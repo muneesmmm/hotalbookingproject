@@ -1,0 +1,26 @@
+{
+  "name": "shopping",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "~1.4.4",
+    "db": "^3.3.0",
+    "debug": "~2.6.9",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.2.0",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "hbs": "^4.1.1",
+    "http-errors": "~1.6.3",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.6.3",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.6",
+    "promise": "^8.1.0",
+    "razorpay": "^2.0.6"
+  }
+}
