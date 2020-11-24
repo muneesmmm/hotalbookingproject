@@ -11,11 +11,12 @@
       list-style-type: none;
       margin: 0;
       padding: 0;
-      width: 20%;
+      width: auto;
       background-color: #f1f1f1;
-      position: fixed;
+      position: fixed 25%;
       height: 100%;
-      overflow: auto;
+      
+      {{!-- overflow: auto; --}}
     }
 
     li a {
@@ -30,25 +31,25 @@
       color: white;
     }
 
-    li a:hover:not(.active) {
+    {{!-- li a:hover:not(.active) {
       background-color: #555;
       color: white;
-    }
+    } --}}
   </style>
 </head>
 
 <body>
 
-  <ul>
+  {{!-- <ul>
     <li><a class="active" href="#home">Home</a></li>
     <li><a href="#news">Hotals</a></li>
     <li><a href="#news">users</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="/admin">Logout</a></li>
-  </ul>
+  </ul> --}}
 
-  <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+  <div style="margin-left:20%;padding:1px 16px;height:1000px;">
 
     <div class="container mt-2">
       <div class="row">
