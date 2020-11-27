@@ -3,15 +3,16 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light"> --}}
    
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+          {{#if admin}}
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <span class="navbar-toggler-icon"></span>{{/if}}
+  </button><a class="navbar-brand mr-5" href="#" >Admin Panal</a>
   <div class="collapse navbar-collapse "  id="navbarTogglerDemo01" >
-      <a class="navbar-brand" href="#" >Admin Panal</a>
+      
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
     <li class="nav-item active"><a class="active" href="#home">Home</a></li>
-    <li class="nav-item"><a class="nav-link" href="#news">Hotals</a></li>
-    <li class="nav-item"><a class="nav-link" href="#news">users</a></li>
+    <li class="nav-item"><a class="nav-link" href="/admin/totalhotals">Hotals</a></li>
+    <li class="nav-item"><a class="nav-link" href="/admin/totalusers">users</a></li>
     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
     <li class="nav-item"><a class="nav-link" href="/admin">Logout</a></li>

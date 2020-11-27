@@ -35,5 +35,12 @@ router.post('/login',(req,res)=>{
   router.get('/homepage',(req,res)=>{
     res.render('admin/homepage',{admin:true})
   })
+  router.get('/totalhotals',(req,res)=>{
+    res.render('admin/totalhotals',{admin:true})
+  })
+  router.get('/totalusers',(req,res)=>{
+    res.render('admin/totalusers',{admin:true})
+  })
+  
   
 module.exports = router;
