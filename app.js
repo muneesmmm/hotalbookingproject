@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
+
 var hbs = require('express-handlebars')
 var app = express();
 var fileUpload = require('express-fileUpload')
@@ -21,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
-app.use(session({secret:"Key",cookie:{maxAge:60000}}))
+app.use(session({secret:"hash",cookie:{maxAge:60000}}))
 db.connect((err) => {
   if (err) console.log("connection error" + err);
   else console.log("database connected successfully 27");
@@ -29,6 +30,7 @@ db.connect((err) => {
 })
 app.use('/', usersRouter);
 app.use('/admin', adminRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
