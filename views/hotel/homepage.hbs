@@ -2,100 +2,124 @@
 <html>
 
 <head>
-  <style>
-    body {
-      margin: 0;
-    }
-
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      width: auto;
-      background-color: #f1f1f1;
-      position: fixed 25%;
-      height: 100%;
-      
-      {{!-- overflow: auto; --}}
-    }
-
-    li a {
-      display: block;
-      color:navy;
-      padding: 10px 20px;
-      text-decoration: none;
-    }
-
-    li a.active {
-      background-color: #ec8105;
-      color: white;
-    }
-
-    {{!-- li a:hover:not(.active) {
-      background-color: #555;
-      color: white;
-    } --}}
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="/hotelHome/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/hotelHome/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/hotelHome/assets/css/Animation-Cards-1.css">
+    <link rel="stylesheet" href="/hotelHome/assets/css/Animation-Cards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.css">
+    <link rel="stylesheet" href="/hotelHome/assets/css/Sidebar-Menu-1.css">
+    <link rel="stylesheet" href="/hotelHome/assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="/hotelHome/assets/css/styles.css">
 </head>
 
 <body>
-
-  {{!-- <ul>
-    <li><a class="active" href="#home">Home</a></li>
-    <li><a href="/total_Hotals">Hotals</a></li>
-    <li><a href="#news">users</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="/admin">Logout</a></li>
-  </ul> --}}
-
-  <div style="margin-left:10%;padding:1px 16px;height:1000px;">
-
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-md-3 p-3">
-          <div class="row">
-            <div class="card" style="width: 15rem; height:auto">
-              <img class="card-img-top" src="/images/image.jpg" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Total Hotels</h5>
-              </div>
-            </div>
-          </div>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand"> <a href="#">Home </a></li>
+                <li> <a href="#">Dashboard </a></li>
+                <li> <a href="#">Dashboard </a></li>
+                <li> <a href="#">Dashboard </a><a href="#">LogOut</a></li>
+            </ul>
         </div>
-        <div class="col-md-3 p-3">
-          <div class="row">
-            <div class="card" style="width: 15rem; height:auto">
-              <img class="card-img-top" src="/images/image1.jpg" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Total Users</h5>
-              </div>
+        <div class="page-content-wrapper">
+            <div class="container-fluid"><a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i></a>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <h1>Admin Home</h1>
+                        </div>
+                        <p></p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="col-md-3 p-3">
-          <div class="row">
-            <div class="card" style="width: 15rem; height:auto">
-              <img class="card-img-top" src="/images/image3.jpg" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Total Bookings</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 p-3">
-          <div class="row">
-            <div class="card" style="width: 15rem; height:auto">
-              <img class="card-img-top" src="/images/image2.jpg" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Most booked Hotels</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-xl-3"></div>
+                <div class="col-md-6 col-xl-8">
+                    <div class="row space-rows">
+                        <div class="col">
+                            <div class="card cards-shadown cards-hover" data-aos="flip-left" data-aos-duration="950">
+                                <div class="card-header"><span class="space"><a href="#"><i class="fa fa-cloud-download" id="download-icon"></i></a></span>
+                                    <div class="cardheader-text">
+                                        <h4 id="heading-card">926.00</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text sub-text-color">Today Booking</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card cards-shadown cards-hover" data-aos="slide-right" data-aos-duration="950">
+                                <div class="card-header"><span class="space"><a href="#"><i class="fa fa-cloud-download" id="download-icon"></i></a></span>
+                                    <div class="cardheader-text">
+                                        <h4 id="heading-card">926.00</h4>
+                                        <p id="cardheader-subtext">m1-co2</p>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text sub-text-color">Total Bookings</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card cards-shadown cards-hover" data-aos="flip-up" data-aos-duration="950">
+                                <div class="card-header cards-header-hover"><span class="space"><a href="#"><i class="fa fa-cloud-download" id="download-icon"></i></a></span>
+                                    <div class="cardheader-text">
+                                        <h4 id="heading-card">926.00</h4>
+                                        <p id="cardheader-subtext">m1-co2</p>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text sub-text-color">Total Customers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row space-rows">
+                        <div class="col">
+                            <div class="card cards-shadown cards-hover" data-aos="flip-left" data-aos-duration="950">
+                                <div class="card-header"><span class="space"><a href="#"><i class="fa fa-cloud-download" id="download-icon"></i></a></span>
+                                    <div class="cardheader-text">
+                                        <h4 id="heading-card">926.00</h4>
+                                        <p id="cardheader-subtext">m1-co2</p>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text sub-text-color">Today Income</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card cards-shadown cards-hover" data-aos="slide-right" data-aos-duration="950">
+                                <div class="card-header"><span class="space"><a href="#"><i class="fa fa-cloud-download" id="download-icon"></i></a></span>
+                                    <div class="cardheader-text">
+                                        <h4 id="heading-card">926.00</h4>
+                                        <p id="cardheader-subtext">m1-co2</p>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text sub-text-color">Total Income</p>
+                                </div>
+                            {{!-- </div> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/hotelHome/assets/js/jquery.min.js"></script>
+    <script src="/hotelHome/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/hotelHome/assets/js/bs-init.js"></script>
+    <script src="/hotelHome/https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
+    <script src="/hotelHome/assets/js/Sidebar-Menu.js"></script>
 </body>
 
 </html>
