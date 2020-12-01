@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>hotal</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almendra+SC">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
@@ -18,7 +20,7 @@
 
 <body>
     <div>
-        <div class="header-dark">
+        <div class="header-dark" style="background: url(&quot;assets/img/mountain_bg.jpg&quot;) right / cover space;text-align: center;filter: saturate(108%) sepia(0%);height: 422px;">
             <nav class="navbar navbar-dark navbar-expand-lg navigation-clean-search">
                 <div class="container"><a class="navbar-brand" href="#">Company Name</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse"
@@ -37,30 +39,39 @@
             <div class="container hero">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
-                        <h1 class="text-center">The Revolution is Here.</h1>
+                        <h1 class="text-center" style="margin-bottom: -7px;">DISCOVER</h1>
+                        <h1 style="font-size: 22px;font-family: 'Almendra SC', serif;margin-top: 0px;margin-bottom: -1px;">Tope Hotels</h1>
+                        <h1 style="font-size: 33px;background: #38064f;margin-bottom: 50px;font-family: 'Almendra SC', serif;">explore</h1>
                     </div>
                 </div>
             </div>
+            <div class="table-responsive" style="margin-bottom: 0px;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="border-width: 0px;">Destination</th>
+                            <th style="border-width: 0px;">Check In</th>
+                            <th style="border-width: 0px;">Check Out</th>
+                            <th style="border-width: 0px;">Guest &amp; Room</th>
+                            <th style="border-width: 0px;">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background: rgba(61,38,84,0.57);opacity: 1;"><input type="text" style="width: 151px;border-radius: 20px;filter: invert(0%);"></td>
+                            <td style="background: rgba(61,38,84,0.57);"><input type="date" style="border-radius: 20px;"><br></td>
+                            <td style="background: rgba(61,38,84,0.57);"><input type="date" style="border-radius: 20px;"></td>
+                            <td style="background: rgba(61,38,84,0.57);"><select style="min-width: 0px;width: 49px;height: 33px;box-shadow: -2px -1px 5px;border-radius: 47px;"><optgroup label="This is a group"><option value="1">1</option><option value="2">2</option><option value="3" selected="">3</option></optgroup></select></td>
+                            <td
+                                style="background: rgba(61,38,84,0.57);"><button class="btn btn-primary" type="button" style="border-radius: 18px;">Search</button></td>
+                        </tr>
+                        <tr></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <div data-aos="flip-up" data-aos-duration="600">
-        <div class="container">
-            <div class="row" style="opacity: 0.88;text-align: center;box-shadow: 0px 0px;background: url(&quot;assets/img/mountain_bg.jpg&quot;);border-bottom-right-radius: 15px;border-bottom-left-radius: 15px;margin-bottom: 36px;">
-                <div class="col-12 col-md-3 col-lg-2 offset-lg-1" style="width: 180px;box-shadow: 0px 0px;opacity: 0.88;text-align: center;">
-                    <h5 class="text-secondary" style="font-family: Bitter, serif;opacity: 0.88;text-align: center;color: rgb(255,255,255);">Destination</h5><input type="text" style="height: 30px;width: 141px;border-color: rgb(197,197,197);border-radius: 10px;box-shadow: -2px 2px 5px rgb(147,144,144);opacity: 0.88;text-align: center;"></div>
-                <div class="col-12 col-md-3 col-lg-2"
-                    style="width: 180px;opacity: 0.88;text-align: center;">
-                    <h5 class="text-secondary" style="font-family: Bitter, serif;opacity: 0.88;text-align: center;color: rgb(254,255,255);">Check In</h5><input type="date" style="height: 30px;width: 141px;border-color: rgb(197,197,197);border-radius: 9px;box-shadow: 2px 2px 3px rgb(147,144,144);opacity: 0.88;text-align: center;"></div>
-                <div class="col-md-3 col-lg-2" style="opacity: 0.88;text-align: center;">
-                    <h5 class="text-secondary" style="font-family: Bitter, serif;opacity: 0.88;text-align: center;">Check out</h5><input type="date" style="height: 30px;width: 141px;border-color: rgb(197,197,197);border-radius: 10px;box-shadow: 2px 2px 2px rgb(147,144,144);opacity: 0.88;text-align: center;"></div>
-                <div class="col-lg-2" style="opacity: 0.88;text-align: center;">
-                    <h5 class="text-secondary" style="font-family: Bitter, serif;">Gust&amp;Room</h5><select style="border-color: rgb(197,197,197);border-radius: 12px;box-shadow: 2px 2px 3px rgb(147,144,144);margin: 5px;"><optgroup label="This is a group"><option value="1">1</option><option value="2" selected="">2</option><option value="3">3</option><option value="4">4</option></optgroup></select></div>
-                <div
-                    class="col-md-3 col-lg-2" style="text-align: center;"><button class="btn btn-primary text-center" type="button" style="text-align: center;border-radius: 21px;width: 205px;margin: 0px;margin-top: 30px;height: 31px;margin-bottom: 11px;">search</button></div>
-        </div>
-    </div>
-    </div>
-        <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>

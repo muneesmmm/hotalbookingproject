@@ -32,7 +32,7 @@ module.exports={
         doSignup: (hotelData) => {
             return new Promise(async (resolve, reject) => {
                 db.get().collection(collection.HOTELUSER_COLLECTION).insertOne(hotelData).then((data) => {
-  ;
+  
                     resolve(data.ops[0])
                 })
     

@@ -32,7 +32,7 @@ router.post('/login',(req,res)=>{
   if(response.status){
     req.session.hotel=response.hotel
     req.session.hotelloggedIn=true
-    res.redirect('/homepage')
+    res.redirect('/hotel/homepage')
   }else{
     req.session.hotelloginErr=true
     res.redirect('/login')

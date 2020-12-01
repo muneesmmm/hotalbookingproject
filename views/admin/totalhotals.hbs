@@ -1,44 +1,31 @@
 <div class="container mt-5">
+  <div class="row mt-4">
+      <a href="/admin/add-Hotel" class="btn btn-success ml-auto my-5">Add Hotels</a>
+    </div>
   <table class="table">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Hotal Name</th>
         <th scope="col">Hotal Location</th>
-        <th scope="col">Hotal star</th>
-        <th scope="col">Hotal joined</th>
-        <th scope="col">Hotal comtact</th>
+        <th scope="col">Hotal email</th>
+        <th scope="col">Hotal phone</th>
+        <th scope="col">Hotal joines</th>
         <th></th>
 
       </tr>
     </thead>
     <tbody>
+       {{#each hotel}} 
       <tr>
         <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
-        <td>Otto</td>
+        <td>{{this.hotelname}}</td>
+        <td>{{this.location}}</td>
+        <td>{{this.email}}</td>
+        <td>{{this.phone}}</td>
+        <td>####</td>
         <td>@mdo</td>
       </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
+     {{/each}}
     </tbody>
   </table>

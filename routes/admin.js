@@ -4,20 +4,13 @@ var express = require('express');
 const adminHelpers= require('../helpers/admin-helpers')
 var router = express.Router();
 /* GET users listing. */
-router.get('/',function(req, res) {
-  let admin=req.session.admin
-  console.log(admin)
-  res.render('admin/login',{admin:true})
-  
-});
-router.get('/admin/login',(req,res)=>{
-  if(req.session.admin){
-    res.redirect('/homepage')
+router.get('/',function(req, res, next) {
+  if(req.session.loggedIn){
+  res.render('admin/homepage',{admin:true})
   }else{
-    res.render('/admin',{"LoginErr":req.session.LoginErr})
-    req.session.userloginErr=false
-  }  
-})
+  res.render('admin/login')
+  }
+});
 router.post('/login',(req,res)=>{
   adminHelpers.doLogin(req.body).then((response)=>{
     
@@ -26,25 +19,51 @@ router.post('/login',(req,res)=>{
       req.session.admin=response.admin
       res.redirect('/admin/homepage')
     }else{
-      req.session.userloginErr=true
+      req.session.LoginErr=true
       res.redirect('/admin')
     }
+      
+    
   })
   })
-  router.get('/homepage',(req,res)=>{
+router.get('/admin/login',(req,res)=>{
+  if(req.session.admin){
+    res.redirect('/homepage')
+  }else{
+    res.render('/admin',{"LoginErr":req.session.LoginErr})
+    req.session.LoginErr=false
+  }  
+})
+
+  router.get('/homepage',(req,res,next)=>{
+    
+
     res.render('admin/homepage',{admin:req.session.admin})
+   
   })
   router.get('/totalhotals',(req,res)=>{
-    res.render('admin/totalhotals',{admin:req.session.admin})
-
+    adminHelpers.getAllHotels().then((hotel)=>{
+    res.render('admin/totalhotals',{admin:req.session.admin,hotel})
+  })
   })
   router.get('/totalusers',(req,res)=>{
     res.render('admin/totalusers',{admin:req.session.admin})
   })
   router.get('/logout',(req,res)=>{
-    req.session.userloggedIn=false
+    req.session.loggedIn=false
     req.session.user=null
     res.redirect('/admin')
   })
+  router.get('/add-hotel',(req,res)=>{
+    res.render('admin/add-hotel')
+  })
+  router.post('/add-hotel',(req,res)=>{
+    adminHelpers.addHotel(req.body).then((response)=>{
+      console.log(response)
+      req.session.hotel=response
+      req.session.hotelloggedIn=true
+      res.redirect('/admin/totalhotals')
+    })
+    })
   
 module.exports = router;

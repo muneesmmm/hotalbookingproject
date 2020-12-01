@@ -27,7 +27,26 @@ module.exports={
                 resolve({ status: false })
             }
         })
+    },
+    getAllHotels:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let hotel=await db.get().collection(collection.HOTELUSER_COLLECTION).find().toArray()
+            resolve(hotel)
+        })
+
+    },
+    addHotel: (hotelData) => {
+        return new Promise(async (resolve, reject) => {
+            hotelData.password = await bcrypt.hash(hotelData.password, 10)
+            db.get().collection(collection.HOTELUSER_COLLECTION).insertOne(hotelData).then((data) => {
+
+                resolve(data.ops[0])
+            })
+
+
+        })
     }
+
     }
 
 
