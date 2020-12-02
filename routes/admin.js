@@ -1,46 +1,57 @@
 const { response } = require('express');
 var express = require('express');
-
-const adminHelpers= require('../helpers/admin-helpers')
 var router = express.Router();
+const adminHelpers= require('../helpers/admin-helpers')
+const verifyLogin=(req,res,next)=>{
+  if(req.session.loggedIn){
+    next()
+  }else{
+    res.redirect('/admin/login')
+  }
+}
 /* GET users listing. */
 router.get('/',function(req, res, next) {
   if(req.session.loggedIn){
+    let admin=req.session.admin
   res.render('admin/homepage',{admin:true})
   }else{
-  res.render('admin/login')
+  res.render('admin/login',{"LoginErr":req.session.LoginErr})
+  req.session.LoginErr=false
   }
 });
 router.post('/login',(req,res)=>{
+  req.session.loggedIn=false
   adminHelpers.doLogin(req.body).then((response)=>{
     
     if(response.status){
       req.session.loggedIn=true
       req.session.admin=response.admin
-      res.redirect('/admin/homepage')
-    }else{
-      req.session.LoginErr=true
       res.redirect('/admin')
+    }else{
+      res.redirect('/admin/login')
+      req.session.LoginErr=true
     }
       
     
   })
   })
-router.get('/admin/login',(req,res)=>{
-  if(req.session.admin){
-    res.redirect('/homepage')
+router.get('/login',(req,res)=>{
+  if(req.session.LoginErr){
+    console.log("bvvbv",LoginErr);
+    res.render('admin/login')
+   
   }else{
-    res.render('/admin',{"LoginErr":req.session.LoginErr})
+    res.redirect('/admin')
     req.session.LoginErr=false
   }  
 })
 
-  router.get('/homepage',(req,res,next)=>{
+  // router.get('/homepage',(req,res,next)=>{
     
 
-    res.render('admin/homepage',{admin:req.session.admin})
+  //   res.render('admin/homepage',{admin:req.session.admin})
    
-  })
+  // })
   router.get('/totalhotals',(req,res)=>{
     adminHelpers.getAllHotels().then((hotel)=>{
     res.render('admin/totalhotals',{admin:req.session.admin,hotel})
