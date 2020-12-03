@@ -4,24 +4,28 @@ var db=require('../config/connection')
 var collection=require('../config/collections')
 const { response } = require('express')
 var objectId=require('mongodb').ObjectID
+
 module.exports={
     doLogin: (hotelData) => {
         return new Promise(async (resolve, reject) => {
             let loginStatus = false
             let response = {}
             let hotel = await db.get().collection(collection.HOTELUSER_COLLECTION).findOne({ email: hotelData.email })
+            let password = await db.get().collection(collection.HOTELUSER_COLLECTION).findOne({ password: hotelData.password })
             if (hotel) {
-                bcrypt.compare(hotelData.password, hotel.password).then((status) => {
-                    if (status) {
+                    if(password){
+                        loginStatus=true
+                    }
+                if (loginStatus) {
                         console.log("success");
                         response.hotel=hotel
-                        response.status=true
+                        response.loginStatus=true
                         resolve(response)
                     } else {
                         console.log("failed");
-                        resolve({ status: false })
+                        resolve({ loginStatus: false })
                     }
-                })
+                
             } else {
                 console.log("db failed");
                 resolve({ status: false })
@@ -39,4 +43,39 @@ module.exports={
     
             })
         }
+        // getUserProfile: (hotelId) => {
+        //     return new Promise(async (resolve, reject) => {
+        //         let profile = await db.get().collection(collection.HOTELUSER_COLLECTION).aggregate([
+        //             {
+        //                 $match: { hotel: objectId(hotelId) }
+        //             },
+        //             {
+        //                 $unwind: '$hotels'
+        //             },
+        //             {
+        //                 $project: {
+        //                     hotelname: '$hotel.hotelname',
+        //                     location: '$hotel.location',
+        //                     email: '$hotel.email'
+        //                 }
+        //             }
+        //             ,
+        //             {
+        //                 $lookup: {
+        //                     from: collection.PRODUCT_COLLECTION,
+        //                     localField: 'hotelname',
+        //                     foreignField: '_id',
+        //                     as: 'hotel'
+        //                 }
+        //             }
+        //             // {
+        //             //     $project: {
+        //             //         item: 1, quantity: 1, product: { $arrayElemAt: ['$product', 0] }
+        //             //     }
+        //             // }
+        //         ]).toArray()
+        //         // console.log(cartItems);
+        //         resolve(profile)
+        //     })
+        // }
     }

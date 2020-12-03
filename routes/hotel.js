@@ -39,26 +39,38 @@ router.post('/signup',(req,res)=>{
     res.redirect('/hotel/homepage')
   })
   })
-router.post('/login',(req,res)=>{
-  req.session.hotelloggedIn=false
-  hotelHelpers.doLogin(req.body).then((response)=>{
-  if(response.status){
-    req.session.hotelloggedIn=true
-    req.session.hotel=response.hotel
-    res.redirect('/hotel')
-  }else{
-    res.redirect('/hotel/login')
-    req.session.hotelloginErr=true
-
-  }
-})
-})
+  router.post('/login',(req,res)=>{
+    req.session.hotelloggedIn=false
+    hotelHelpers.doLogin(req.body).then((response)=>{
+      
+      if(response.loginStatus){
+        req.session.hotelloggedIn=true
+        req.session.hotel=response.hotel
+        res.redirect('/hotel')
+      }else{
+        res.redirect('/hotel/login')
+        req.session.LoginErr=true
+      }
+        
+      
+    })
+    })
 router.get('/logout',(req,res)=>{
   req.session.hotelloggedIn=false
   req.session.hotel=null
-  res.redirect('/')
+  res.redirect('/hotel')
 })
 router.get('/homepage',(req,res)=>{
   res.render('hotel/homepage')
+})
+router.get('/view-profile',async(req,res)=>{
+  if(req.session.hotelloggedIn){ 
+  let hotel=req.session.hotel
+  // let profile=await userHelper.getUserProfile(req.session.hotel._id)
+  // console.log(hotel)
+  // console.log(req.session.hotel._id)
+  res.render('hotel/view-profile',{hotel:true})
+  console.log(hotel);
+  }
 })
 module.exports = router;

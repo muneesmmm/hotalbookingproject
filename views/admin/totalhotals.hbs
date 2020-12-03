@@ -24,7 +24,9 @@
         <td>{{this.email}}</td>
         <td>{{this.phone}}</td>
         <td>####</td>
-        <td>@mdo</td>
+        <td><a href="/admin/edit-hotel/{{this._id}}" class="btn btn-primary">Edit</a>
+           <a href="/admin/detete-hotel/{{this._id}}" class="btn btn-danger" onclick="return confirm('are you want to delete {{this.name}} ?')">Delete</a></td>
+          
       </tr>
      {{/each}}
     </tbody>
