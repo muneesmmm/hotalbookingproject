@@ -1,29 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>profile</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/Sidebar-Menu-1.css">
-    <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-
-<body>
-    <div id="wrapper">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand"> <a href="#">Home </a></li>
-                <li> <a href="#">Profile</a></li>
-                <li> <a href="#">Dashboard </a></li>
-                <li> <a href="#">Dashboard </a></li>
-            </ul>
-        </div>
-        <div class="page-content-wrapper">
-            <div class="container-fluid"><a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i></a>
+<section> <div class="page-content-wrapper">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div>
@@ -40,45 +16,57 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-borderless">
                             <thead>
-                                <tr>
+                                {{#if hotel}}
+                                {{!-- <tr>
                                     <th>Column 1</th>
                                     <th>Column 2</th>
-                                </tr>
+                                </tr> --}}
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Hotal Name</td>
-                                    <td>{{#if hotel}}{{hotel.hotelname}}{{/if}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Location</td>
-                                    <td>Cell 4</td>
-                                </tr>
-                                <tr>
-                                    <td>Phone Number</td>
-                                    <td>Cell 2</td>
+                                    <td>{{this.hotels.hotelname}}</td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
-                                    <td>Cell 2</td>
+                                    <td>{{this.hotels.email}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Hotel Star</td>
-                                    <td>Cell 2</td>
+                                    <td>Phone Number</td>
+                                    <td>{{this.hotels.phone}}</td>
                                 </tr>
+                                <tr>
+                                    <td>Location</td>
+                                    <td>{{this.hotels.location}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Hotel Address</td>
+                                    <td>{{this.hotels.address}}</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/hotel/edit-profile/{{this.hotels._id}}" class="btn btn-primary">Edit</a></td>
+
+                                </tr>
+                                {{/if}}
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="col-md-4"><img src="assets/img/Atlantis,_The_Palm_Exterior_.jpg" width="50%" height="50%" style="width: 100%;height: 100%;"></div>
+                <div class="col-md-4"><img src="/profile/img/Atlantis,_The_Palm_Exterior_.jpg" width="50%" height="50%"
+                        style="width: 100%;height: 100%;"></div>
             </div>
         </div>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/Sidebar-Menu.js"></script>
-</body>
-
-</html>
+      <script src="/hotelHome/assets/js/jquery.min.js"></script>
+  <script src="/hotelHome/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/hotelHome/assets/js/bs-init.js"></script>
+  <script src="/hotelHome/https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
+  <script src="/hotelHome/assets/js/Sidebar-Menu.js"></script>
+    <script>
+  $(function () {
+    $('#hotels').DataTable();
+  });
+    </script>

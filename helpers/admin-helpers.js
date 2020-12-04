@@ -1,17 +1,17 @@
 const { resolve, reject } = require('promise')
 const bcrypt = require('bcrypt')
-var db=require('../config/connection')
-var collection=require('../config/collections')
+var db = require('../config/connection')
+var collection = require('../config/collections')
 const { response } = require('express')
-var objectId=require('mongodb').ObjectID
+var objectId = require('mongodb').ObjectID
 var generator = require('generate-password');
 var nodemailer = require('nodemailer');
- 
+
 var password = generator.generate({
     length: 10,
     numbers: true
 });
-module.exports={
+module.exports = {
     doLogin: (adminData) => {
         return new Promise(async (resolve, reject) => {
             let status = false
@@ -22,12 +22,12 @@ module.exports={
                     if (status) {
                         console.log("success");
                         console.log(admin);
-                        response.admin=admin
-                        response.status=true
+                        response.admin = admin
+                        response.status = true
                         resolve(response)
                     } else {
                         console.log("failed");
-                        response.status=false
+                        response.status = false
                         resolve({ status: false })
                         console.log(response.status);
 
@@ -39,9 +39,9 @@ module.exports={
             }
         })
     },
-    getAllHotels:()=>{
-        return new Promise(async(resolve,reject)=>{
-            let hotel=await db.get().collection(collection.HOTELUSER_COLLECTION).find().toArray()
+    getAllHotels: () => {
+        return new Promise(async (resolve, reject) => {
+            let hotel = await db.get().collection(collection.HOTELUSER_COLLECTION).find().toArray()
             resolve(hotel)
         })
 
@@ -60,8 +60,8 @@ module.exports={
     },
     sendMail: (reciever) => {
         console.log("Reviever", reciever)
-        var username=reciever.email
-        var  password=reciever.password
+        var username = reciever.email
+        var password = reciever.password
         responseData = {}
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -75,32 +75,31 @@ module.exports={
             from: 'muneesmmm@gmail.com',
             to: username,
             subject: 'Sending Email using Node.js',
-            text: 'Thank you for registering your hotel is added successfully you can use this username and password \n username:\t'+username+'\n password:\t'+password+''
-                };
+            text: 'Thank you for registering your hotel is added successfully you can use this username and password \n username:\t' + username + '\n password:\t' + password + ''
+        };
 
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 console.log(error);
             } else {
                 console.log('Email sent: ' + info.response);
-                responseData.message="hotel registered succussfully"
+                responseData.message = "hotel registered succussfully"
                 console.log(responseData.message);
             }
         });
     },
-    deleteProduct:(hotel)=>{
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.HOTELUSER_COLLECTION).removeOne({_id:objectId(hotel)}).then((response)=>{
+    deleteProduct: (hotel) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.HOTELUSER_COLLECTION).removeOne({ _id: objectId(hotel) }).then((response) => {
                 console.log(response)
                 resolve(response)
             })
         })
     }
-            
+
 
 
 }
 
 
-   
-       
+
