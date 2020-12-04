@@ -2,13 +2,6 @@ const { response } = require('express');
 var express = require('express');
 var router = express.Router();
 const adminHelpers = require('../helpers/admin-helpers')
-var generator = require('generate-password');
-
-
-var password = generator.generate({
-  length: 10,
-  numbers: true
-});
 const verifyLogin = (req, res, next) => {
   if (req.session.loggedIn) {
     next()
@@ -18,12 +11,12 @@ const verifyLogin = (req, res, next) => {
 }
 /* GET users listing. */
 router.get('/', function (req, res, next) {
+  let admin = req.session.admin
   if (req.session.loggedIn) {
-    let admin = req.session.admin
     res.render('admin/homepage', { admin })
   } else {
     res.render('admin/login', { "LoginErr": req.session.LoginErr })
-    req.session.LoginErr = false
+    req.session.LoginErr =false
   }
 });
 router.post('/login', (req, res) => {
@@ -35,8 +28,9 @@ router.post('/login', (req, res) => {
       req.session.admin = response.admin
       res.redirect('/admin')
     } else {
-      res.redirect('/admin/login')
       req.session.LoginErr = true
+      res.redirect('/admin')
+      
     }
 
 

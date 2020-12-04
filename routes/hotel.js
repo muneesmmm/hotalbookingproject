@@ -11,23 +11,23 @@ const verifyLogin=(req,res,next)=>{
 }
 /* GET home page. */
 router.get('/',function(req, res, next) {
+  let hotel=req.session.hotel
   if(req.session.hotelloggedIn){
-    let hotel=req.session.hotel
-  res.render('hotel/homepage',{hotel:true})}
+  res.render('hotel/homepage',{ hotel })}
   else{
     res.render('hotel/login',{"LoginErr":req.session.hotelloginErr})
   req.session.hotelloginErr=false
   }
   
 })
-router.get('/login',(req,res)=>{
-  if(req.session.hotelloginErr){
-    res.redirect('hotel/login')
-  }else{
-    res.render('/hotel',{"loginErr":req.session.hotelloginErr})
-    req.session.hotelloginErr=false
-  }  
-})
+// router.get('/login',(req,res)=>{
+//   if(req.session.hotelloginErr){
+//     res.redirect('hotel/login')
+//   }else{
+//     res.render('/hotel',{"loginErr":req.session.hotelloginErr})
+//     req.session.hotelloginErr=false
+//   }  
+// })
 router.get('/signup',(req,res)=>{
   res.render('hotel/signup')
 })
@@ -48,8 +48,8 @@ router.post('/signup',(req,res)=>{
         req.session.hotel=response.hotel
         res.redirect('/hotel')
       }else{
-        res.redirect('/hotel/login')
         req.session.LoginErr=true
+        res.redirect('/hotel/login')
       }
         
       
