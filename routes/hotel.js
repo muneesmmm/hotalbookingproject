@@ -65,12 +65,16 @@ router.get('/logout', (req, res) => {
 router.get('/homepage', (req, res) => {
   res.render('hotel/homepage')
 })
-router.get('/view-profile', async (req, res) => {
-  if (req.session.hotelloggedIn) {
-    let hotels = req.session.hotel
-    res.render('hotel/view-profile', { hotel: true, hotels })
-    console.log("hotels", hotels);
-  }
+// router.get('/view-profile', async (req, res) => {
+//   if (req.session.hotelloggedIn) {
+//     let hotels = req.session.hotel
+//     res.render('hotel/view-profile', { hotel: true, hotels })
+//     console.log("hotels", hotels);
+//   }
+// })
+router.get('/view-profile',async(req,res)=>{
+  let hotels=await hotelHelpers.getHotel(req.session.hotel._id)
+  res.render('hotel/view-profile',{hotel:req.session.hotel,hotels})
 })
 router.get('/edit-profile/:id',async(req,res)=>{
   let hotels=await hotelHelpers.getHotelDatails(req.params.id)

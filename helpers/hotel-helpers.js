@@ -68,5 +68,12 @@ module.exports = {
                 resolve(hotel)
             })
         })
+    },
+    getHotel: (hotelid) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.HOTELUSER_COLLECTION).findOne({ _id: objectId(hotelid) }).then((hotel) => {
+                resolve(hotel)
+            })
+        })
     }
 }

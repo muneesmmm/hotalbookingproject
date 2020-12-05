@@ -27,27 +27,27 @@
                             <tbody>
                                 <tr>
                                     <td>Hotal Name</td>
-                                    <td>{{this.hotels.hotelname}}</td>
+                                    <td>{{hotels.hotelname}}</td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
-                                    <td>{{this.hotels.email}}</td>
+                                    <td>{{hotels.email}}</td>
                                 </tr>
                                 <tr>
                                     <td>Phone Number</td>
-                                    <td>{{this.hotels.phone}}</td>
+                                    <td>{{hotels.phone}}</td>
                                 </tr>
                                 <tr>
                                     <td>Location</td>
-                                    <td>{{this.hotels.location}}</td>
+                                    <td>{{hotels.location}}</td>
                                 </tr>
 
                                 <tr>
                                     <td>Hotel Address</td>
-                                    <td>{{this.hotels.address}}</td>
+                                    <td>{{hotels.address}}</td>
                                 </tr>
                                 <tr>
-                                    <td><a href="/hotel/edit-profile/{{this.hotels._id}}" class="btn btn-primary">Edit</a></td>
+                                    <td><a href="/hotel/edit-profile/{{hotels._id}}" class="btn btn-primary">Edit</a></td>
 
                                 </tr>
                                 {{/if}}
@@ -66,7 +66,7 @@
   <script src="/hotelHome/https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
   <script src="/hotelHome/assets/js/Sidebar-Menu.js"></script>
     <script>
-  $(function () {
+  {{!-- $(function () {
     $('#hotels').DataTable();
   });
-    </script>
+    </script> --}}
