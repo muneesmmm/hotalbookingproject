@@ -75,5 +75,54 @@ module.exports = {
                 resolve(hotel)
             })
         })
+    },
+    addRoom: (hotelData, hid) => {
+        return new Promise(async (resolve, reject) => {
+            let rooms = {
+                hotelid: objectId(hid._id),
+                rooms: [hotelData]
+
+            }
+            
+            db.get().collection(collection.ROOM_COLLECTION).insertOne(rooms).then((data) => {
+                console.log(hotelData);
+                resolve(data.ops[0]._id)
+            })
+
+
+        })
+    },
+    getAllRooms: (hotelid) => {
+        return new Promise(async (resolve, reject) => {
+            let rooms = await db.get().collection(collection.ROOM_COLLECTION).aggregate([
+                {
+                    $match: { hotelid: objectId(hotelid._id) }
+                },
+                {
+                    $unwind: '$rooms'
+                },
+                {
+                    $project: {
+                        roomname: '$rooms.roomname',
+                        price: '$rooms.price',
+                        features: '$rooms.features',
+                        avileblerooms: '$rooms.avileblerooms',
+                        type: '$rooms.type',
+                        image: '$rooms.image'
+                    }
+                },
+                {
+                    $lookup: {
+                        from: collection.ROOM_COLLECTION,
+                        localField: 'hotelid',
+                        foreignField: '_id',
+                        as: 'rooms'
+                    }
+                }
+            ]).toArray()
+            console.log("roomsss",rooms);
+            resolve(rooms)
+        })
+
     }
 }

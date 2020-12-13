@@ -2,23 +2,16 @@
     <div data-aos="flip-up" data-aos-duration="600"></div>
     <div></div>
     <div class="article-list">
-        <div class="container" data-aos="fade-up" style="margin-top: 183px;">
+        <div class="container" data-aos="fade-up" style="margin-top: 50px;">
             <div class="intro">
                 <h2 class="text-center" style="margin-top: 0px;">Popular Destinations</h2>
                 <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
             </div>
             <div class="row justify-content-center align-items-center articles">
-                <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" data-aos="fade-up" src="assets/img/thailand.jpeg"></a>
-                    <h3 data-aos="fade" class="name">Thailand</h3>
-                    <p data-aos="fade" class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a></div>
-                <div
-                    class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" data-aos="fade-up" src="assets/img/canada.jpeg"></a>
-                    <h3 data-aos="fade" class="name">Canada</h3>
-                    <p data-aos="fade" class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a></div>
-            <div
-                class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" data-aos="fade-up" src="assets/img/mountain_bg.jpg" style="height: 167px;"></a>
-                <h3 data-aos="fade" class="name">Dubai</h3>
-                <p data-aos="fade" class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a></div>
+                {{#each destination}}
+                <div class="col-sm-6 col-md-4 item"><a href="user/hotels"><img class="img-fluid" data-aos="fade-up" src="assets/img/thailand.jpeg"></a>
+                    <h3 data-aos="fade" class="name">{{this.city}}</h3>
+                    <p data-aos="fade" class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a></div>{{/each}}
     </div>
     </div>
     </div>
@@ -31,41 +24,17 @@
                 </div>
             </div>
             <div class="row">
+                           {{#each destination}}
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-body" data-aos="fade-up-left" style="background: url(&quot;assets/img/india.jpeg&quot;);background-size: cover;">
-                            <h4 class="card-title">Title</h4>
-                            <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                        <div class="card-body" data-aos="fade-up-left" style="background: url(&quot;/hotel-images/{{this._id}}.jpg&quot;);background-size: cover;">
+                            <h4 class="card-title">{{this.hotelname}}</h4>
+                            <h6 class="text-muted card-subtitle mb-2"></h6>
                             <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac .</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body" data-aos="fade-up-left" style="background: url(&quot;assets/img/images.jpeg&quot;);">
-                            <h4 class="card-title">Title</h4>
-                            <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac&nbsp;</p><a class="card-link" href="#"></a></div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body" data-aos="fade-up-right" style="background: url(&quot;assets/img/loft.jpg&quot;);">
-                            <h4 class="card-title">Title</h4>
-                            <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac&nbsp;</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body" data-aos="fade-up-right" style="background: url(&quot;assets/img/mountain_bg.jpg&quot;) no-repeat;background-size: cover;">
-                            <h4 class="card-title">Title</h4>
-                            <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac&nbsp;</p>
-                        </div>
-                    </div>
-                </div>
+                </div>{{/each}}
+               
             </div>
         </div>
     </div>

@@ -10,7 +10,7 @@
         <th scope="col">Hotal Location</th>
         <th scope="col">Hotal email</th>
         <th scope="col">Hotal phone</th>
-        <th scope="col">Hotal joines</th>
+        <th scope="col">City</th>
         <th></th>
 
       </tr>
@@ -23,7 +23,7 @@
         <td>{{this.location}}</td>
         <td>{{this.email}}</td>
         <td>{{this.phone}}</td>
-        <td>####</td>
+        <td>{{this.city}}</td>
         <td><a href="/admin/edit-hotel/{{this._id}}" class="btn btn-primary">Edit</a>
            <a href="/admin/detete-hotel/{{this._id}}" class="btn btn-danger" onclick="return confirm('are you want to delete {{this.name}} ?')">Delete</a></td>
           

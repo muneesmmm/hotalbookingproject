@@ -95,6 +95,32 @@ module.exports = {
                 resolve(response)
             })
         })
+    },
+    updateHotel: (hotelid, hotelData) => {
+        console.log(hotelData);
+        console.log(hotelid);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.HOTELUSER_COLLECTION)
+                .updateOne({ _id: objectId(hotelid) }, {
+                    $set: {
+                        hotelname: hotelData.hotelname,
+                        email: hotelData.email,
+                        phone: hotelData.phone,
+                        location: hotelData.location,
+                        address: hotelData.address
+
+                    }
+                }).then((response) => {
+                    resolve()
+                })
+        })
+    },
+    getHotelDatails: (hotelid) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.HOTELUSER_COLLECTION).findOne({ _id: objectId(hotelid) }).then((hotel) => {
+                resolve(hotel)
+            })
+        })
     }
 
 

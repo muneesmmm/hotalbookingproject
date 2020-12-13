@@ -73,7 +73,6 @@ router.get('/add-hotel', (req, res) => {
 router.post('/add-hotel', (req, res) => {
   adminHelpers.addHotel(req.body).then((response) => {
     console.log(response)
-    console.log(response)
     req.session.admin = response
     req.session.loggedIn = true
     res.redirect('/admin/totalhotals')
@@ -91,5 +90,22 @@ router.get('/detete-hotel/:id',(req,res)=>{
     res.redirect('/admin/totalhotals')
   })
 
+})
+router.get('/edit-hotel/:id',async(req,res)=>{
+  let hotels=await adminHelpers.getHotelDatails(req.params.id)
+  console.log(hotels);
+  res.render('admin/edit-hotel',{admin:true,hotels})
+
+})
+router.post('/edit-hotel/:id',(req,res)=>{
+  adminHelpers.updateHotel(req.params.id,req.body).then(()=>{
+    res.redirect('/admin/totalhotals')
+    
+    // if(req.files.image){
+    //   let id=req.params.id
+    //   let image=req.files.image
+    //   image.mv('./public/hotel-images/'+id+'.jpg')
+    // }
+  })
 })
 module.exports = router;

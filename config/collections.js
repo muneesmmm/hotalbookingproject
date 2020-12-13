@@ -1,6 +1,8 @@
 module.exports={
 
 ADMIN_COLLECTION:'admin',
-HOTELUSER_COLLECTION:'hotel'
+HOTELUSER_COLLECTION:'hotel',
+USER_COLLECTION:'user',
+ROOM_COLLECTION:'room'
 
 }

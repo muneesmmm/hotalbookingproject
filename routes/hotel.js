@@ -74,23 +74,45 @@ router.get('/homepage', (req, res) => {
 // })
 router.get('/view-profile',async(req,res)=>{
   let hotels=await hotelHelpers.getHotel(req.session.hotel._id)
-  res.render('hotel/view-profile',{hotel:req.session.hotel,hotels})
+  res.render('hotel/view-profile',{hotel:true,hotels})
 })
 router.get('/edit-profile/:id',async(req,res)=>{
   let hotels=await hotelHelpers.getHotelDatails(req.params.id)
   console.log(hotels);
   res.render('hotel/edit-profile',{hotel:true,hotels})
-
 })
 router.post('/edit-profile/:id',(req,res)=>{
-  hotelHelpers.updateHotel(req.params.id,req.body).then(()=>{
+  hotelHelpers.updateHotel(req.params.id,req.body).then((id)=>{
     res.redirect('/hotel/view-profile')
     
-    // if(req.files.image){
-    //   let id=req.params.id
-    //   let image=req.files.image
-    //   image.mv('./public/product-images/'+id+'.jpg')
-    // }
+    if(req.files.image){
+      let id=req.params.id
+      let image=req.files.image
+      image.mv('./public/hotel-images/'+id+'.jpg')
+    }
   })
+})
+router.get('/add-room', (req, res) => {
+  res.render('hotel/add-room', { hotel: req.session.hotel })
+})
+router.post('/add-room', (req, res) => {
+  hotelHelpers.addRoom(req.body,req.session.hotel).then((id) => {
+    console.log(id)
+    let image=req.files.Image
+    image.mv('./public/room-images/'+id+'.jpg',(err)=>{
+      if(!err){
+        res.redirect('/hotel/rooms')
+    req.session.hotelloggedIn = true
+      }else{
+        console.log(err);
+      }
+  })
+})
+})
+router.get('/rooms',async (req, res) => {
+  let rooms=await hotelHelpers.getAllRooms(req.session.hotel)
+  console.log(rooms);
+  res.render('hotel/rooms', {hotel:req.session.hotel ,rooms})
+  req.session.hotelloggedIn = true
 })
 module.exports = router;
