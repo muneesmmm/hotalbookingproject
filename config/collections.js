@@ -3,6 +3,8 @@ module.exports={
 ADMIN_COLLECTION:'admin',
 HOTELUSER_COLLECTION:'hotel',
 USER_COLLECTION:'user',
-ROOM_COLLECTION:'room'
+CITY_COLLECTION:'city',
+ROOM_COLLECTION:'room',
+ROOMBOOKING_COLLECTION:'reservedroom'
 
 }

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="/viewhotel/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
+    <link rel="stylesheet" href="/viewhotel/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/viewhotel/assets/css/Animated-CSS-Waves-Background-SVG.css">
+    <link rel="stylesheet" href="/viewhotel/assets/css/dh-card-image-left-dark.css">
+    <link rel="stylesheet" href="/viewhotel/assets/css/Pretty-Product-List.css">
+    <link rel="stylesheet" href="/viewhotel/assets/css/Product-Details.css">
+    <link rel="stylesheet" href="/viewhotel/assets/css/styles.css">
+    <nav class="navbar navbar-light navbar-expand sticky-top bg-light text-monospace navigation-clean"
+        style="padding-top: 0px;padding-bottom: 16px;">
+        <div class="container-fluid"><button class="navbar-toggler" data-toggle="collapse"><span class="sr-only">Toggle
+                    navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="col">
+                <div class="row">
+                    <div class="col text-center" style="width: 220px;"><span></span>
+                        <header></header>
+                        <header></header><span><strong>Destination</strong></span><input
+                            class="align-content-center align-self-center flex-wrap-reverse" type="text"
+                            value="{{hotels.hotelname}}" style="width: 166px;border-radius: 20px;filter: invert(0%);"
+                            placeholder="{{hotels.hotelname}}">
+                    </div>
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><span
+                            class="align-content-center align-self-center"></span><strong
+                            class="align-content-center align-self-center">Check in</strong><input
+                            class="align-content-center align-self-center flex-wrap-reverse visible" type="date"
+                            style="border-radius: 20px;width: 166px;"></div>
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong
+                            class="align-content-center align-self-center">Check Out</strong><input
+                            class="align-content-center align-self-center flex-wrap-reverse" type="date"
+                            style="border-radius: 20px;width: 166px;"></div>
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong
+                            class="align-content-center align-self-center">Guest&amp;Room</strong><select
+                            class="align-content-center align-self-center flex-wrap-reverse"
+                            style="min-width: 0px;width: 166px;height: 30px;border-radius: 47px;">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected="">3</option>
+                        </select></div>
+                    <div class="col text-center d-xl-flex align-content-center align-self-center justify-content-xl-center"
+                        style="margin-top: 0px;width: 220px;height: 54px;"><button
+                            class="btn btn-primary active align-content-center align-self-center flex-wrap-reverse"
+                            type="button"
+                            style="border-radius: 18px;text-align: justify;padding-top: 6px;margin-top: 15px;height: 30px;">Book
+                            Now</button></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="container" style="margin-top: 89px;">
+        <div class="photo-card">
+            <div class="photo-background"
+                style="background-image: url(&quot;/hotel-images/{{hotels._id}}.jpg&quot;);box-shadow: 0px 0px;"></div>
+            <div class="photo-details" style="box-shadow: 0px 0px;">
+                <h1>{{hotels.hotelname}}</h1>
+                <div class="product-rating"><i class="fa fa-star"
+                        style="border-color: rgb(255,245,0);color: rgb(239,205,25);"></i><i class="fa fa-star"
+                        style="color: rgb(239,205,25);"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star-half"></i><a class="small-text" href="#">82 reviews</a></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales elementum mi non hendrerit.
+                    Proin tempor facilisis felis nec ultrices. Duis nec ultrices neque. Proin semper ultricies turpis,
+                    vel faucibus velit sodales vitae. Class aptent taciti sociosqu ad litora torquent per conubia
+                    nostra, per inceptos himenaeos.&nbsp; </p>
+                    
+           
+
+        </div>
+                {{!-- <div class="photo-tags">
+                    <ul>
+                        <li>I<a class="text-uppercase" href="#"
+                                style="background: rgb(92,196,238);text-align: center;font-family: Aclonica, sans-serif;">BOOK
+                                NOW</a></li>
+                    </ul>
+                </div> --}}
+            </div>
+        </div>
+        
+    </section>
+    <div class="svg-container">
+        <div class="waveWrapper waveAnimation">
+            <div class="waveWrapperInner bgTop">
+                <div class="wave waveTop"
+                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+            </div>
+            <div class="waveWrapperInner bgMiddle">
+                <div class="wave waveMiddle"
+                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+            </div>
+            <div class="waveWrapperInner bgBottom">
+                <div class="wave waveBottom"
+                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            {{#each rooms}}
+            <div class="col-lg-4">
+                <div class="card mb-4 box-shadow rounded-0"><img class="card-img-top  d-block rounded-0" height="250px"
+                        src="/room-images/{{this._id}}.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">{{this.roomname}}</h4>
+                        <div class="product-rating">
+                            <i class="fa fa-star" style="border-color: rgb(255,245,0);color: rgb(239,205,25);"></i>
+                            <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
+                            <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
+                            <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
+                            <i class="fa fa-star-half" style="color: rgb(239,205,25);"></i></div>
+                        <h6 class="text-muted card-subtitle mb-2">{{this.type}}</h6>
+                        <p class="card-text">{{this.features}}</p>
+                        <div class="photo-tags">
+                            <ul>
+                                <li><a class="text-uppercase" href="/Roombooing/{{this._id}}"
+                                        style="background: rgb(92,196,238);text-align: center;font-family: Aclonica, sans-serif;">BOOK
+                                        NOW</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+    </div>
+
+    </section>
+    <script src="/viewhotel/assets/js/jquery.min.js"></script>
+    <script src="/viewhotel/assets/bootstrap/js/bootstrap.min.js"></script>
+    </body>
+
+</html>

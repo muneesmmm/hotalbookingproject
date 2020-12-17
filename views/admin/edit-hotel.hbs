@@ -5,7 +5,7 @@
         <h2 class="text-center">Edit Profile</h2>            
          <form action="/admin/edit-hotel/{{hotels._id}}" method="POST" enctype="multipart/form-data">
          <label for="exampleInputEmail1">name</label>
-         <input type="text" class="form-control" name="hotelname" value="{{hotels.hotelname}}" aria-describedby="emailHelp">
+         <input type="text" class="form-control" name="hotelname" value="let Guser=req.user" aria-describedby="emailHelp">
          <label for="">Email</label>
          <input type="text" class="form-control" value="{{hotels.email}}" name="email">
          <label for="">location</label>

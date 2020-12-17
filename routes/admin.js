@@ -49,10 +49,7 @@ router.post('/login', (req, res) => {
 // })
 
 router.get('/homepage', (req, res, next) => {
-
-
   res.render('admin/homepage', { admin: req.session.admin })
-
 })
 router.get('/totalhotals', (req, res) => {
   adminHelpers.getAllHotels().then((hotel) => {
@@ -76,13 +73,17 @@ router.post('/add-hotel', (req, res) => {
     req.session.admin = response
     req.session.loggedIn = true
     res.redirect('/admin/totalhotals')
+    adminHelpers.addCity(req.body).then((response) => {
+      console.log("//'.//////////////..//",response.city);
+      req.session.admin = response
+      req.session.loggedIn = true
+    })
   })
   adminHelpers.sendMail(req.body).then((response) => {
     req.session.admin = response
     req.session.loggedIn = true
-    res.redirect('/admin/totalhotals')
   })
-})  
+}) 
 router.get('/detete-hotel/:id',(req,res)=>{
   let hotel=req.params.id
   console.log(hotel)

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>booking</title>
+    <link rel="stylesheet" href="/booking/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/booking/assets/css/Animated-CSS-Waves-Background-SVG.css">
+    <link rel="stylesheet" href="/booking/assets/css/card-image-zoom-on-hover.css">
+    <link rel="stylesheet" href="/booking/assets/css/Carousel_Image_Slider-1.css">
+    <link rel="stylesheet" href="/booking/assets/css/Carousel_Image_Slider.css">
+    <link rel="stylesheet" href="/booking/assets/css/dh-card-image-left-dark.css">
+    <link rel="stylesheet" href="/booking/assets/css/dh-row-text-image-right-responsive.css">
+    <link rel="stylesheet" href="/booking/assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="/booking/assets/css/styles.css">
+    <link rel="stylesheet" href="/booking/assets/css/Transparent-Overlay-On-Image-On-Hover.css">
+</head>
+
+<body>
+      <div class="svg-container">
+        <div class="waveWrapper waveAnimation">
+            <div class="waveWrapperInner bgTop">
+                <div class="wave waveTop"
+                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+            </div>
+            <div class="waveWrapperInner bgMiddle">
+                <div class="wave waveMiddle"
+                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+            </div>
+            <div class="waveWrapperInner bgBottom">
+                <div class="wave waveBottom"
+                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-light navbar-expand sticky-top bg-light text-monospace navigation-clean"
+        style="padding-top: 0px;padding-bottom: 16px;">
+        <div class="container-fluid"><button class="navbar-toggler" data-toggle="collapse"><span class="sr-only">Toggle
+                    navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="col">
+                <div class="row">
+                    <div class="col text-center" style="width: 220px;"><span></span>
+                        <header></header>
+                        <header></header><span><strong>Destination</strong></span><input
+                            class="align-content-center align-self-center flex-wrap-reverse" type="text"
+                            value="{{hotels.hotelname}}" style="width: 166px;border-radius: 20px;filter: invert(0%);"
+                            placeholder="{{hotels.hotelname}}">
+                    </div>
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><span
+                            class="align-content-center align-self-center"></span><strong
+                            class="align-content-center align-self-center">Check in</strong><input
+                            class="align-content-center align-self-center flex-wrap-reverse visible" type="date"
+                            style="border-radius: 20px;width: 166px;"></div>
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong
+                            class="align-content-center align-self-center">Check Out</strong><input
+                            class="align-content-center align-self-center flex-wrap-reverse" type="date"
+                            style="border-radius: 20px;width: 166px;"></div>
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong
+                            class="align-content-center align-self-center">Guest&amp;Room</strong><select
+                            class="align-content-center align-self-center flex-wrap-reverse"
+                            style="min-width: 0px;width: 80px;height: 30px;border-radius: 47px;">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected="">3</option>
+                        </select>
+                        <select
+                            class="align-content-center align-self-center flex-wrap-reverse"
+                            style="min-width: 0px;width: 80px;height: 30px;border-radius: 47px;">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected="">3</option>
+                        </select></div>
+                    <div class="col text-center d-xl-flex align-content-center align-self-center justify-content-xl-center"
+                        style="margin-top: 0px;width: 220px;height: 54px;"><button
+                            class="btn btn-primary active align-content-center align-self-center flex-wrap-reverse"
+                            type="button"
+                            style="border-radius: 18px;text-align: justify;padding-top: 6px;margin-top: 15px;height: 30px;">Book
+                            Now</button></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div></div>
+    <div>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8 col-xl-7">
+                    <section>
+                        {{#each rooms}}<div class="hoverText"><img class="img-thumbnail" width="100%"
+                                src="/room-images/{{this._id}}.jpg">
+                        </div>{{/each}}
+                </div>
+                <div class="col-md-4 col-xl-4 float-right" data-toggle="tooltip" data-bs-tooltip=""
+                    style="padding: 0px;padding-top: 0px;padding-right: 28px;padding-left: 14px;">
+
+                    <form method="GET" style="border-color: rgba(255,255,255,0.29); "action="/make-payment">
+                        <h2 class="text-center" style="color: rgb(201,60,60);"><strong>BOOK your</strong>&nbsp;room.
+                        </h2>
+                        <div class="form-group"><input placeholder="Check In Date" class="form-control" type="text"
+                                onfocus="(this.type = 'date')" id="date" name="checkin"></div>
+                        <div class="form-group"><input placeholder="Check Out Date" class="form-control" type="text"
+                                onfocus="(this.type = 'date')" id="date"name="checkout">
+                        </div>
+                        <div class="form-group">
+                            {{!-- <div class="form-row"> --}}
+                                <div class="form-group"><input placeholder="Adults" class="form-control" type="text"
+                                onfocus="(this.type = 'text')" name="adults">
+                        </div>
+                                {{!-- <div class="col"><select class="form-control">
+                                        <optgroup label="Adults">
+                                            <option value="" disabled selected hidden>Adults</option>
+                                            <option value="13">This is item 2</option>
+                                            <option value="14">This is item 3</option>
+                                        </optgroup>
+                                    </select></div> --}}
+                                {{!-- <div class="col"><select class="form-control" >
+                                        <optgroup label="Cildrents">
+                                            <option value="" disabled selected hidden>Childrens</option>
+                                            <option value="13">This is item 2</option>
+                                            <option value="14">This is item 3</option>
+                                        </optgroup>
+                                    </select></div> --}}
+                            {{!-- </div> --}}
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col"><select class="form-control">
+                                        <optgroup label="This is a group">
+                                            <option value="12" disabled selected hidden>Rooms</option>
+                                            <option value="13">This is item 2</option>
+                                            <option value="14">This is item 3</option>
+                                        </optgroup>
+                                    </select></div>
+                                <div class="col"><select class="form-control">
+                                        <optgroup label="This is a group">
+                                            <option value="12"  disabled selected hidden>Beds</option>
+                                            <option value="13">This is item 2</option>
+                                            <option value="14">This is item 3</option>
+                                        </optgroup>
+                                    </select></div>
+                            </div>
+                        </div>
+                        <section></section>
+                        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">BOOK
+                                NOW</button></div>
+                                <input type="text" name="roomid" id="userid" value="{{rooms._id}}" hidden>
+                                <input type="text" name="hotelid" id="userid" value="{{rooms.hid}}" hidden>
+                                <input type="text" name="userid" id="userid" value="{{user._id}}" hidden>
+                    </form>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div></div>
+
+    <script src="/booking/assets/js/jquery.min.js"></script>
+    <script src="/booking/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/booking/assets/js/bs-init.js"></script>
+</body>
+

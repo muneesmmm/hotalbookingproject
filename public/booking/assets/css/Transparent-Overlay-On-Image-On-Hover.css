@@ -1,0 +1,89 @@
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+audio, canvas, iframe, img, svg, video {
+  vertical-align: middle;
+}
+
+audio, canvas, img, video {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+img {
+  border-style: none;
+}
+
+* {
+  -webkit-border-radius: 0 0 0 0;
+  border-radius: 0 0 0 0;
+  font-family: 'Dancing Script';
+  /*color: #406286 !important;*/
+}
+
+* {
+  /*box-sizing: border-box;*/
+  /*-moz-box-sizing: border-box;*/
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+audio, canvas, iframe, img, svg, video {
+  vertical-align: middle;
+}
+
+audio, canvas, img, video {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+img {
+  border-style: none;
+}
+
+* {
+  /*box-sizing: border-box;*/
+}
+
+.hoverText {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hoverTextContent {
+  font-size: 40px;
+  /*visibility: hidden;*/
+}
+
+.hoverText:hover .hoverTextContent {
+  visibility: visible;
+  position: absolute;
+  bottom: 0;
+  background: rgb(0,0,0);
+  background: rgba(0,0,0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  height: 100%;
+  /*padding: 20px;*/
+}
+
+.hoverText .hoverTextContent {
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  background: rgb(0,0,0);
+  background: rgba(0,0,0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+

@@ -1,11 +1,13 @@
 const { resolve, reject } = require('promise')
-const bcrypt = require('bcrypt')
 var db = require('../config/connection')
 var collection = require('../config/collections')
 const { response } = require('express')
+const bcrypt = require('bcrypt')
+
 var objectId = require('mongodb').ObjectID
 var generator = require('generate-password');
 var nodemailer = require('nodemailer');
+const { compare } = require('bcrypt')
 
 var password = generator.generate({
     length: 10,
@@ -87,6 +89,28 @@ module.exports = {
                 console.log(responseData.message);
             }
         });
+    },
+    addCity: (hotelData) => {
+        return new Promise(async (resolve, reject) => {
+            let city = {
+                city: hotelData.city
+            }
+            let data = await db.get().collection(collection.CITY_COLLECTION).findOne({city:hotelData.city})
+            console.log("daataa",data);
+            if(data){
+                compare(hotelData.city,city.city).then((response)=>{
+                    console.log("exist");
+                })
+                
+            }else{
+            db.get().collection(collection.CITY_COLLECTION).insertOne(city).then((data) => {
+                console.log(city);
+                resolve(data.ops[0])
+                
+            })
+
+        }
+        })
     },
     deleteProduct: (hotel) => {
         return new Promise((resolve, reject) => {

@@ -1,0 +1,61 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="/viewhotel/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/viewhotel/assets/css/dh-card-image-left-dark.css">
+    <link rel="stylesheet" href="/viewhotel/assets/css/styles.css">
+</head>
+<nav class="navbar navbar-light navbar-expand sticky-top bg-light text-monospace navigation-clean" style="padding-top: 0px;padding-bottom: 16px;">
+        <div class="container-fluid"><button class="navbar-toggler" data-toggle="collapse"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="col">
+                <div class="row">
+                    <div class="col text-center" style="width: 220px;"><span></span>
+                        <header></header>
+                        <header></header><span><strong>Destination</strong></span><input class="align-content-center align-self-center flex-wrap-reverse" type="text" style="width: 166px;border-radius: 20px;filter: invert(0%);" placeholder="Destination">
+                    </div>
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><span class="align-content-center align-self-center"></span><strong class="align-content-center align-self-center">Check in</strong><input class="align-content-center align-self-center flex-wrap-reverse visible" type="date" style="border-radius: 20px;width: 166px;"></div>
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong class="align-content-center align-self-center">Check Out</strong><input class="align-content-center align-self-center flex-wrap-reverse" type="date" style="border-radius: 20px;width: 166px;"></div>
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong class="align-content-center align-self-center">Guest&amp;Room</strong><select class="align-content-center align-self-center flex-wrap-reverse" style="min-width: 0px;width: 166px;height: 30px;border-radius: 47px;">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected="">3</option>
+                        </select></div>
+                    <div class="col text-center d-xl-flex align-content-center align-self-center justify-content-xl-center" style="margin-top: 0px;width: 220px;height: 54px;"><button class="btn btn-primary active align-content-center align-self-center flex-wrap-reverse" type="button" style="border-radius: 18px;text-align: justify;padding-top: 6px;margin-top: 15px;height: 30px;">Search</button></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+   <section>
+   <div class="container">
+ <div class="row">
+            <div class="col-md-12">
+                <h1 style="text-align: center;margin-top: 19px;margin-bottom: -2px;">Explore</h1>
+                <p style="text-align: center;font-family: 'Almendra SC', serif;">Tope Hotels</p>
+            </div>
+        </div>
+        <div class="row">
+            {{#each hotels}}
+             <div class="col-lg-4">
+                                    <div class="card mb-4 box-shadow rounded-0"><img class="card-img-top w-100 d-block rounded-0" height="250px" src="/hotel-images/{{this._id}}.jpg">
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{this.hotelname}}</h4>
+                                            <h6 class="text-muted card-subtitle mb-2">{{this.place}}</h6>
+                                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget qu ghgjhghg glo.</p>
+                                            <div class="photo-tags">
+                        <ul>
+                            <li><a class="text-uppercase" href="/view-hotels/{{this._id}}" style="background: rgb(92,196,238);text-align: center;font-family: Aclonica, sans-serif;">BOOK NOW</a></li>
+                        </ul>
+                    </div>
+                                        </div>
+                                    </div>
+                                </div>{{/each}}
+                                </div>
+            </div>
+       </section>
+       <script src="/viewhotel/assets/js/jquery.min.js"></script>
+    <script src="/viewhotel/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+ 
