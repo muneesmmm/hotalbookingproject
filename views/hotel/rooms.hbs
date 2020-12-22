@@ -34,8 +34,8 @@
         <td>{{this.features}}</td>
         <td>{{this.avileblerooms}}</td>
         <td>{{this.price}}</td>
-        <td><a href="/admin/edit-hotel/{{this._id}}" class="btn btn-primary">Edit</a>
-           <a href="/admin/detete-hotel/{{this._id}}" class="btn btn-danger" onclick="return confirm('are you want to delete {{this.name}} ?')">Delete</a></td>
+        <td><a href="/hotel/edit-room/{{this._id}}" class="btn btn-primary">Edit</a>
+           <a href="/hotel/detete-room/{{this._id}}" class="btn btn-danger" onclick="return confirm('are you want to delete {{this.name}} ?')">Delete</a></td>
           
       </tr>
      {{/each}}

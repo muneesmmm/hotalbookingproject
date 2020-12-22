@@ -112,9 +112,9 @@ module.exports = {
         }
         })
     },
-    deleteProduct: (hotel) => {
+    deleteHotel: (room) => {
         return new Promise((resolve, reject) => {
-            db.get().collection(collection.HOTELUSER_COLLECTION).removeOne({ _id: objectId(hotel) }).then((response) => {
+            db.get().collection(collection.ROOM_COLLECTION).removeOne({ _id: objectId(room) }).then((response) => {
                 console.log(response)
                 resolve(response)
             })

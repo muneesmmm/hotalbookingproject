@@ -87,7 +87,7 @@ router.post('/add-hotel', (req, res) => {
 router.get('/detete-hotel/:id',(req,res)=>{
   let hotel=req.params.id
   console.log(hotel)
-  adminHelpers.deleteProduct(hotel).then((response)=>{
+  adminHelpers.deleteHotel(hotel).then((response)=>{
     res.redirect('/admin/totalhotals')
   })
 

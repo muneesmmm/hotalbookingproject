@@ -109,6 +109,30 @@ router.post('/add-room', (req, res) => {
   })
 })
 })
+router.get('/edit-room/:id',async(req,res)=>{
+  let room=await hotelHelpers.getroomDatails(req.params.id)
+  console.log("**************************",room);
+  res.render('hotel/edit-room',{hotel:true,room})
+})
+router.post('/edit-room/:id',(req,res)=>{
+  hotelHelpers.updateRoom(req.params.id,req.body).then((id)=>{
+    res.redirect('/hotel/rooms')
+    
+    if(req.files.image){
+      let id=req.params.id
+      let image=req.files.image
+      image.mv('./public/room-images/'+id+'.jpg')
+    }
+  })
+})
+router.get('/detete-room/:id',(req,res)=>{
+  let room=req.params.id
+  console.log("//*************//",room)
+  hotelHelpers.deleteRoom(room).then((response)=>{
+    res.redirect('/hotel/rooms')
+  })
+
+})
 router.get('/rooms',async (req, res) => {
   let rooms=await hotelHelpers.getAllRooms(req.session.hotel)
   console.log(rooms);

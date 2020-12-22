@@ -79,7 +79,7 @@ module.exports = {
     addRoom: (hotelData, hid) => {
         return new Promise(async (resolve, reject) => {
             let rooms = {
-                hotelid: objectId(hid._id),
+               hotelid: objectId(hid._id),
                 rooms: [hotelData]
 
             }
@@ -124,5 +124,69 @@ module.exports = {
             resolve(rooms)
         })
 
+    } ,
+    getroomDatails: (roomid) => {
+        return new Promise(async (resolve, reject) => {
+            let rooms = await db.get().collection(collection.ROOM_COLLECTION).aggregate([
+                {
+                    $match: { _id: objectId(roomid) }
+                },
+                {
+                    $unwind: '$rooms'
+                },
+                {
+                    $project: {
+                        roomname: '$rooms.roomname',
+                        price: '$rooms.price',
+                        features: '$rooms.features',
+                        avileblerooms: '$rooms.avileblerooms',
+                        type: '$rooms.type',
+                        image: '$rooms.image'
+                    }
+                },
+                {
+                    $lookup: {
+                        from: collection.ROOM_COLLECTION,
+                        localField: 'roomid',
+                        foreignField: '_id',
+                        as: 'rooms'
+                    }
+                }
+            ]).toArray()
+            console.log("roomsss",rooms);
+            resolve(rooms)
+        })
+
+    } ,
+    updateRoom: (roomid, roomData) => {
+        console.log(roomData);
+        console.log(roomid);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ROOM_COLLECTION)
+                .update({ _id: objectId(roomid) }, {
+                    $set: {
+                        rooms : [ 
+                            {
+                        roomname: roomData.roomname,
+                        price: roomData.price,
+                        avileblerooms: roomData.avileblerooms,
+                        type: roomData.type,
+                        features: roomData.features
+
+                    }
+                ]
+            }
+                }).then((response) => {
+                    resolve(response)
+                })
+        })
+    },
+    deleteRoom: (room) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ROOM_COLLECTION).removeOne({ _id: objectId(room) }).then((response) => {
+                console.log(response)
+                resolve(response)
+            })
+        })
     }
 }

@@ -18,112 +18,167 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-       <link rel="stylesheet" href="/viewhotel/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/viewhotel/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/viewhotel/assets/css/dh-card-image-left-dark.css">
     <link rel="stylesheet" href="/viewhotel/assets/css/styles.css">
 </head>
 
 <body>
     <div>
-        <div class="text-center header-dark" style="background: url(&quot;assets/img/mountain_bg.jpg&quot;) right / cover space;text-align: center;filter: saturate(108%) sepia(0%);height: 422px;">
+        <div class=" header-dark"
+            style="background: url(&quot;assets/img/mountain_bg.jpg&quot;) right / cover space;text-align: center;filter: saturate(108%) sepia(0%);height: 422px;">
             <nav class="navbar navbar-dark navbar-expand-lg navigation-clean-search">
-                <div class="container"><a class="navbar-brand" href="#">Company Name</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="container"><a class="navbar-brand" href="#">Company Name</a><button data-toggle="collapse"
+                        class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle
+                            navigation</span><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navcol-1">
                         <ul class="nav navbar-nav">
-                             <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            {{#if user}}
-            {{user.displayName}}
-            {{else}}
-            Account
-            {{/if}}
-
-          </button></u>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            {{#if user}}
-            <a class="dropdown-item" href="/logout">logOut</a>
-            {{else}}
-            <a class="dropdown-item" href="/">login</a>
-
-            {{/if}}
-          </div>
-        </div>
-                
                             <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-                            <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Dropdown </a>
-                                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+                            <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
+                                    aria-expanded="false" href="#">Dropdown </a>
+                                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a
+                                        class="dropdown-item" href="#">Second Item</a><a class="dropdown-item"
+                                        href="#">Third Item</a></div>
                             </li>
                         </ul>
                         <form class="form-inline mr-auto" target="_self">
-                            <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="search"></div>
-                        </form><span class="navbar-text"><a class="login" href="/google">Log In</a></span><a class="btn btn-light action-button" role="button" href="#">Sign Up</a>
+                            <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input
+                                    class="form-control search-field" type="search" id="search-field" name="search">
+                            </div>
+                        </form><span class="navbar-text"><a class="login" href="/google">Log In</a></span><a
+                            class="btn btn-light action-button" role="button" href="#">Sign Up</a>
+                        
                     </div>
+                    <div class="collapse navbar-collapse ml-5">
+                                
+                        </div>
+                  {{#if user}}  <div class="collapse navbar-collapse" id="navbar-list-4">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="{{pic}}" width="40" height="40" class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">User :{{#if user}}
+                                {{user.displayName}}
+                                {{else}}
+                                Account
+                                {{/if}}</a>
+                                    <a class="dropdown-item" href="#">{{email}}</a>
+                                    <a class="dropdown-item" href="/user/view-profile">Edit Profile</a>
+                                    <a class="dropdown-item" href="/logout">Log Out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>{{/if}}
+
                 </div>
             </nav>
             <div class="container hero">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
                         <h1 class="text-center" style="margin-bottom: -7px;">DISCOVER</h1>
-                        <h1 style="font-size: 22px;font-family: 'Almendra SC', serif;margin-top: 0px;margin-bottom: -1px;">Tope Hotels</h1>
-                        <h1 style="font-size: 33px;background: #38064f;margin-bottom:0px;font-family: 'Almendra SC', serif;">explore</h1>
+                        <h1
+                            style="font-size: 22px;font-family: 'Almendra SC', serif;margin-top: 0px;margin-bottom: -1px;">
+                            Tope Hotels</h1>
+                        <h1
+                            style="font-size: 33px;background: #38064f;margin-bottom:0px;font-family: 'Almendra SC', serif;">
+                            explore</h1>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div></div>
-    
+
     </nav>
-<nav class="navbar navbar-light navbar-expand sticky-top bg-light text-monospace navigation-clean" style="padding-top: 0px;padding-bottom: 16px;">
-        <div class="container-fluid"><button class="navbar-toggler" data-toggle="collapse"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="svg-container">
+        <div class="waveWrapper waveAnimation">
+            <div class="waveWrapperInner bgTop">
+                <div class="wave waveTop"
+                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+            </div>
+            <div class="waveWrapperInner bgMiddle">
+                <div class="wave waveMiddle"
+                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+            </div>
+            <div class="waveWrapperInner bgBottom">
+                <div class="wave waveBottom"
+                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-light navbar-expand sticky-top bg-light text-monospace navigation-clean"
+        style="padding-top: 0px;padding-bottom: 16px;">
+        <div class="container-fluid"><button class="navbar-toggler" data-toggle="collapse"><span class="sr-only">Toggle
+                    navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="col">
+                <form action="/search" method="POST">
                 <div class="row">
                     <div class="col text-center" style="width: 220px;"><span></span>
                         <header></header>
-                        <header></header><span><strong>Destination</strong></span><input class="align-content-center align-self-center flex-wrap-reverse" type="text" style="width: 166px;border-radius: 20px;filter: invert(0%);" placeholder="Destination">
+                        <header></header><span><strong>Destination</strong></span><input
+                            class="align-content-center align-self-center flex-wrap-reverse" type="text"
+                            style="width: 166px;border-radius: 20px;filter: invert(0%);" name="city" placeholder="Destination">
                     </div>
-                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><span class="align-content-center align-self-center"></span><strong class="align-content-center align-self-center">Check in</strong><input class="align-content-center align-self-center flex-wrap-reverse visible" type="date" style="border-radius: 20px;width: 166px;"></div>
-                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong class="align-content-center align-self-center">Check Out</strong><input class="align-content-center align-self-center flex-wrap-reverse" type="date" style="border-radius: 20px;width: 166px;"></div>
-                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong class="align-content-center align-self-center">Guest&amp;Room</strong><select class="align-content-center align-self-center flex-wrap-reverse" style="min-width: 0px;width: 166px;height: 30px;border-radius: 47px;">
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><span
+                            class="align-content-center align-self-center"></span><strong
+                            class="align-content-center align-self-center">Check in</strong><input
+                            class="align-content-center align-self-center flex-wrap-reverse visible" type="date"
+                            style="border-radius: 20px;width: 166px;"></div>
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong
+                            class="align-content-center align-self-center">Check Out</strong><input
+                            class="align-content-center align-self-center flex-wrap-reverse" type="date"
+                            style="border-radius: 20px;width: 166px;"></div>
+                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong
+                            class="align-content-center align-self-center">Guest&amp;Room</strong><select
+                            class="align-content-center align-self-center flex-wrap-reverse"
+                            style="min-width: 0px;width: 166px;height: 30px;border-radius: 47px;">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3" selected="">3</option>
                         </select></div>
-                    <div class="col text-center d-xl-flex align-content-center align-self-center justify-content-xl-center" style="margin-top: 0px;width: 220px;height: 54px;"><button class="btn btn-primary active align-content-center align-self-center flex-wrap-reverse" type="button" style="border-radius: 18px;text-align: justify;padding-top: 6px;margin-top: 15px;height: 30px;">Search</button></div>
-                </div>
+                    <div class="col text-center d-xl-flex align-content-center align-self-center justify-content-xl-center"
+                        style="margin-top: 0px;width: 220px;height: 54px;"><button
+                            class="btn btn-primary active align-content-center align-self-center flex-wrap-reverse"
+                            type="submit"
+                            style="border-radius: 18px;text-align: justify;padding-top: 6px;margin-top: 15px;height: 30px;">Search</button>
+                    </div>
+                </div></form>
             </div>
         </div>
     </nav>
-<div data-aos="flip-up" data-aos-duration="600"></div>
-<div></div>
-<div class="article-list">
-    <div class="container" data-aos="fade-up" style="margin-top: 50px;">
-        <div class="intro">
-            <h2 class="text-center" style="margin-top: 0px;">Popular Destinations</h2>
-            <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat,
-                pellentesque ut laoreet vitae. </p>
-        </div>
-        <div class="row justify-content-center align-items-center articles">
-            {{#each destination}}
-            <div class="col-sm-6 col-md-3 item"><a href="/hotels/{{this._id}}"><img class="img-fluid" data-aos="fade-up"
-                        src="assets/img/thailand.jpeg"></a>
-                <h3 data-aos="fade" class="name">{{this.city}}</h3>
-                <p data-aos="fade" class="description"></p><a
-                    class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
-            </div>{{/each}}
-        </div>
-    </div>
-</div>
-<div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 style="text-align: center;margin-top: 0px;margin-bottom: -2px;">Explore</h1>
-                <p style="text-align: center;font-family: 'Almendra SC', serif;">Tope Hotels</p>
+    <div data-aos="flip-up" data-aos-duration="600"></div>
+    <div></div>
+    <div class="article-list">
+        <div class="container" data-aos="fade-up" style="margin-top: 50px;">
+            <div class="intro">
+                <h2 class="text-center" style="margin-top: 0px;">Popular Destinations</h2>
+                <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh
+                    erat,
+                    pellentesque ut laoreet vitae. </p>
+            </div>
+            <div class="row justify-content-center align-items-center articles">
+                {{#each destination}}
+                <div class="col-sm-6 col-md-3 item"><a href="/hotels/{{this._id}}"><img class="img-fluid"
+                            data-aos="fade-up" src="assets/img/thailand.jpeg"></a>
+                    <h3 data-aos="fade" class="name">{{this.city}}</h3>
+                    <p data-aos="fade" class="description"></p><a class="action" href="#"><i
+                            class="fa fa-arrow-circle-right"></i></a>
+                </div>{{/each}}
             </div>
         </div>
-        
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 style="text-align: center;margin-top: 0px;margin-bottom: -2px;">Explore</h1>
+                    <p style="text-align: center;font-family: 'Almendra SC', serif;">Tope Hotels</p>
+                </div>
+            </div>
+
             {{!-- <div class="col-md-3">
                 <div class="card">
                     <div class="card-body" data-aos="fade-up-left"
@@ -136,152 +191,167 @@
                 </div>
             </div> --}}
             <div class="row">
-            {{#each hotels}}
-             <div class="col-lg-4">
-                                    <div class="card mb-4 box-shadow rounded-0"><img class="card-img-top  d-block rounded-0" height="250px" src="/hotel-images/{{this._id}}.jpg">
-                                        <div class="card-body">
-                                            <h4 class="card-title">{{this.hotelname}}</h4>
-                                             <div class="product-rating">
-                                            <i class="fa fa-star" style="border-color: rgb(255,245,0);color: rgb(239,205,25);"></i>
-                                             <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
-                                             <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
-                                             <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
-                                             <i class="fa fa-star-half" style="color: rgb(239,205,25);"></i></div>
-                                            <h6 class="text-muted card-subtitle mb-2">{{this.place}}</h6>
-                                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget qu ghgjhghg glo.</p>
-                                            <div class="photo-tags">
-                        <ul>
-                            <li><a class="text-uppercase" href="/view-hotels/{{this._id}}" style="background: rgb(92,196,238);text-align: center;font-family: Aclonica, sans-serif;">BOOK NOW</a></li>
-                        </ul>
+                {{#each hotels}}
+                <div class="col-lg-4">
+                    <div class="card mb-4 box-shadow rounded-0"><img class="card-img-top  d-block rounded-0"
+                            height="250px" src="/hotel-images/{{this._id}}.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title">{{this.hotelname}}</h4>
+                            <div class="product-rating">
+                                <i class="fa fa-star" style="border-color: rgb(255,245,0);color: rgb(239,205,25);"></i>
+                                <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
+                                <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
+                                <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
+                                <i class="fa fa-star-half" style="color: rgb(239,205,25);"></i>
+                            </div>
+                            <h6 class="text-muted card-subtitle mb-2">{{this.place}}</h6>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,
+                                dapibus ac facilisis in, egestas eget qu ghgjhghg glo.</p>
+                            <div class="photo-tags">
+                                <ul>
+                                    <li><a class="text-uppercase" href="/view-hotels/{{this._id}}"
+                                            style="background: rgb(92,196,238);text-align: center;font-family: Aclonica, sans-serif;">View
+                                            Details</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                                        </div>
-                                    </div>
-                                </div>
-            {{/each}}
+                </div>
+                {{/each}}
 
-        </div>
-    
-<div style="margin-bottom: -26px;padding: 0px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 style="text-align: center;margin-top: 27px;margin-bottom: 36px;font-family: 'Almendra SC', serif;">
-                    LUXURIES</h1>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body"
-                        style="margin-bottom: 17px;border-radius: 0px;background: url(&quot;assets/img/building.jpg&quot;);">
-                        <h4 class="card-title">Title</h4>
-                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,
-                            dapibus ac&nbsp;</p>
+
+            <div style="margin-bottom: -26px;padding: 0px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1
+                                style="text-align: center;margin-top: 27px;margin-bottom: 36px;font-family: 'Almendra SC', serif;">
+                                LUXURIES</h1>
+                        </div>
+                    </div>
+                    {{!-- <div class="row">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body"
+                                    style="margin-bottom: 17px;border-radius: 0px;background: url(&quot;assets/img/building.jpg&quot;);">
+                                    <h4 class="card-title">Title</h4>
+                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+                                        justo odio,
+                                        dapibus ac&nbsp;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body" style="background: url(&quot;assets/img/thailand.jpeg&quot;);">
+                                    <h4 class="card-title">Title</h4>
+                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+                                        justo odio,
+                                        dapibus ac&nbsp;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body"
+                                    style="background: url(&quot;assets/img/canada.jpeg&quot;) round;background-size: cover;">
+                                    <h4 class="card-title">Title</h4>
+                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+                                        justo odio,
+                                        dapibus ac&nbsp;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body" style="background: url(&quot;assets/img/desk.jpg&quot;);">
+                                    <h4 class="card-title">Title</h4>
+                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+                                        justo odio,
+                                        dapibus ac&nbsp;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Title</h4>
+                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+                                        justo odio,
+                                        dapibus ac&nbsp;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Title</h4>
+                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+                                        justo odio,
+                                        dapibus ac&nbsp;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Title</h4>
+                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+                                        justo odio,
+                                        dapibus ac&nbsp;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Title</h4>
+                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+                                        justo odio,
+                                        dapibus ac&nbsp;</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div> --}}
+            <div class="footer-basic">
+                <footer>
+                    <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i
+                                class="icon ion-social-snapchat"></i></a><a href="#"><i
+                                class="icon ion-social-twitter"></i></a><a href="#"><i
+                                class="icon ion-social-facebook"></i></a></div>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="#">Home</a></li>
+                        <li class="list-inline-item"><a href="#">Services</a></li>
+                        <li class="list-inline-item"><a href="#">About</a></li>
+                        <li class="list-inline-item"><a href="#">Terms</a></li>
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                    </ul>
+                    <p class="copyright">Company Name © 2017</p>
+                </footer>
             </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body" style="background: url(&quot;assets/img/thailand.jpeg&quot;);">
-                        <h4 class="card-title">Title</h4>
-                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,
-                            dapibus ac&nbsp;</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body"
-                        style="background: url(&quot;assets/img/canada.jpeg&quot;) round;background-size: cover;">
-                        <h4 class="card-title">Title</h4>
-                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,
-                            dapibus ac&nbsp;</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-body" style="background: url(&quot;assets/img/desk.jpg&quot;);">
-                        <h4 class="card-title">Title</h4>
-                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,
-                            dapibus ac&nbsp;</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,
-                            dapibus ac&nbsp;</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,
-                            dapibus ac&nbsp;</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,
-                            dapibus ac&nbsp;</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,
-                            dapibus ac&nbsp;</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="footer-basic">
-    <footer>
-        <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i
-                    class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a
-                href="#"><i class="icon ion-social-facebook"></i></a></div>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Home</a></li>
-            <li class="list-inline-item"><a href="#">Services</a></li>
-            <li class="list-inline-item"><a href="#">About</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
-            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-        </ul>
-        <p class="copyright">Company Name © 2017</p>
-    </footer>
-</div>
-<script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-     <script src="/viewhotel/assets/js/jquery.min.js"></script>
-    <script src="/viewhotel/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
- <script src="/viewhotel/assets/js/jquery.min.js"></script>
-    <script src="/viewhotel/assets/bootstrap/js/bootstrap.min.js"></script>
-       <link rel="stylesheet" href="/viewhotel/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/viewhotel/assets/css/dh-card-image-left-dark.css">
-    <link rel="stylesheet" href="/viewhotel/assets/css/styles.css">
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+            <script src="assets/js/bs-init.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+            <script src="/viewhotel/assets/js/jquery.min.js"></script>
+            <script src="/viewhotel/assets/bootstrap/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
+            <script src="/viewhotel/assets/js/jquery.min.js"></script>
+            <script src="/viewhotel/assets/bootstrap/js/bootstrap.min.js"></script>
+            <link rel="stylesheet" href="/viewhotel/assets/bootstrap/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/viewhotel/assets/css/dh-card-image-left-dark.css">
+            <link rel="stylesheet" href="/viewhotel/assets/css/styles.css">
 </body>
 
 </html>
