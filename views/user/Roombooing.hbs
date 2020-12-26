@@ -90,12 +90,17 @@
                     <section>
                         {{#each rooms}}<div class="hoverText"><img class="img-thumbnail" width="100%"
                                 src="/room-images/{{this._id}}.jpg">
-                        </div>{{/each}}
+                        </div>
+                        <div class="col" style="padding-left: 15px;padding-right: 5px;padding-top: 0px;">
+                           <span id="total"> <h4 class="text-center" style="color: aliceblue;">Prize :
+                            {{this.price}} /-</h4></span>
+                            {{/each}}
+                        </div>
                 </div>
                 <div class="col-md-4 col-xl-4 float-right" data-toggle="tooltip" data-bs-tooltip=""
                     style="padding: 0px;padding-top: 0px;padding-right: 28px;padding-left: 14px;">
 
-                    <form method="POST" style="border-color: rgba(255,255,255,0.29); " action="/make-payment">
+                    <form method="POST" style="border-color: rgba(255,255,255,0.29); " action="/add-booking">
                         <h2 class="text-center" style="color: rgb(201,60,60);"><strong>BOOK your</strong>&nbsp;room.
                         </h2>
                         <div class="form-group"><input placeholder="Check In Date" class="form-control" type="text"
@@ -103,72 +108,70 @@
                         <div class="form-group"><input placeholder="Check Out Date" class="form-control" type="text"
                                 onfocus="(this.type = 'date')" id="date" name="checkOut" id="datePicker" required>
                         </div>
-                            {{!-- <div class="form-group">
-                                
-                                <div class="form-row">
-                                   <div class="col"> <h4 class="" style="color: rgb(255, 255, 255);"><strong>Guest :
-                                </h4></div>
-                                   <div class="col"><button class="btn btn-danger form-control" style="width: 40px;"  id="subtract"> -
-                                            1</button> </div>
-                                    <div class="col"><input  class="form-control" name="Guest"
-                                            type="text" id="w" style="width: 40px;"  readonly></div>
-                                   <button style="width: 40px;" class=" btn btn-danger form-control"  id="add"> +
-                                        1</button>
+                        {{!-- <div class="form-group">
+
+                            <div class="form-row">
+                                <div class="col">
+                                    <h4 class="" style="color: rgb(255, 255, 255);"><strong>Guest :
+                                    </h4>
+                                </div>
+                                <div class="col"><button class="btn btn-danger form-control" style="width: 40px;"
+                                        id="subtract"> -
+                                        1</button> </div>
+                                <div class="col"><input class="form-control" name="Guest" type="text" id="w"
+                                        style="width: 40px;" readonly></div>
+                                <button style="width: 40px;" class=" btn btn-danger form-control" id="add"> +
+                                    1</button>
                             </div>
                         </div> --}}
                         <div class="form-group">
                             <div class="form-row">
-                                <div class="col-lg-5 text-center d-lg-flex justify-content-lg-center align-items-lg-center" style="padding-left: 8px;">
+                                <div class="col-lg-5 text-center d-lg-flex justify-content-lg-center align-items-lg-center"
+                                    style="padding-left: 8px;">
                                     <h4 class="text-center" style="color: aliceblue;">Guest :</h4>
                                 </div>
-                                <div class="col-lg-2" style="width: 47px;padding-right: 5px;padding-left: 15px;"><button class="btn btn-primary" type="button" style="width: 40px;padding-left: 13px;" id="subtract" >-</button></div>
-                                <div class="col-lg-3" style="padding-left: 0px;padding-right: 4px;padding-top: 0px;"><input class="form-control" type="text" id="w" name="Guest" readonly></div>
-                                <div class="col-lg-2" style="width: 47px;padding-left: 0px;"><button class="btn btn-primary" type="button" style="width: 40px;"id="add" >+</button></div>
+                                <div class="col-lg-2" style="width: 47px;padding-right: 5px;padding-left: 15px;"><button
+                                        class="btn btn-primary" type="button" style="width: 40px;padding-left: 13px;"
+                                        id="subtract">-</button></div>
+                                <div class="col-lg-3" style="padding-left: 0px;padding-right: 4px;padding-top: 0px;">
+                                    <input class="form-control" type="text" id="w" name="Guest" readonly>
+                                </div>
+                                <div class="col-lg-2" style="width: 47px;padding-left: 0px;"><button
+                                        class="btn btn-primary" type="button" style="width: 40px;" id="add">+</button>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-row">
-                                <div class="col-lg-5 text-center d-lg-flex justify-content-lg-center align-items-lg-center" style="padding-left: 8px;">
+                                <div class="col-lg-5 text-center d-lg-flex justify-content-lg-center align-items-lg-center"
+                                    style="padding-left: 8px;">
                                     <h4 class="text-center" style="color: aliceblue;">Rooms :</h4>
                                 </div>
-                                
-                                <div class="col" style="padding-left: 15px;padding-right: 5px;padding-top: 0px;"><input class="form-control" type="text" id="q" name="Room" readonly></div>
-                               
+
+                                <div class="col" style="padding-left: 15px;padding-right: 5px;padding-top: 0px;"><input
+                                        class="form-control" type="text" id="q" name="Room" readonly></div>
+
                             </div>
                         </div>
-                        {{!-- <div class="form-group">
-                            <div class="form-row">
-                                <div class="col"><h4 class="text-center" style="color: rgb(255, 255, 255);"><strong>Room :
-                                </h4></div>
-                                <div class="col"><input placeholder="Rooms" class="form-control" name="Room" type="text"
-                                        id="q"></div>
-                                <div class="col"><select class="form-control">
-                                        <option value="12" disabled selected hidden>Beds</option>
-                                        <option value="13">This is item 2</option>
-                                        <option value="14">This is item 3</option>
-                                        </optgroup>
-                                    </select></div>
-                            </div>
-                        </div>
-                        <section></section> --}}
+                        
                         <div class="form-group"><button class="btn btn-primary btn-block" type="submit">BOOK
                                 NOW</button></div>
                         <h5 class="text" style="color:rgb(255, 255, 255)">Note: only 3 persons alloved each room</h3>
                             {{#each rooms}}
-
-                            <input type="text" name="roomid" id="userid" value="{{this._id}}" hidden>
-                            <input type="text" name="hotelid" id="userid" value="{{this.hid}}" hidden>{{/each}}
-                            <input type="text" name="userid" id="userid" value="{{user._id}}" hidden>
+                            <input type="text" name="roomid"  value="{{this._id}}" hidden>
+                            <input type="text" name="Price"  value="{{this.price}}" hidden>
+                            <input type="text" name="roomname"  value="{{this.roomname}}" hidden>
+                            <input type="text" name="type"  value="{{this.type}}" hidden>
+                            <input type="text" name="hotelid"  value="{{this.hid}}" hidden>{{/each}}
+                            <input type="text" name="userid"  value="{{user._id}}" hidden>
+                            <input type="text" name="name"  value="{{user.displayName}}" hidden>
+                             <input type="text" name="email"  value="{{email}}" hidden>
+                            <input type="text" name="status"  value="pendin" hidden>
                     </form>
-
                 </div>
-
             </div>
         </div>
     </div>
-
-
-
     <div></div>
 
     <script src="/booking/assets/js/jquery.min.js"></script>
@@ -176,24 +179,23 @@
     <script src="/booking/assets/js/bs-init.js"></script>
 </body>
 <script>
-
     document.getElementById("w").value = "1";
     var w = 1
     document.getElementById("w").value = w;
     var q = 1
     document.getElementById("q").value = q;
 
+
     // Set counter default to zero
 
     // Display total
-
     var x = document.getElementById("add");
     var y = document.getElementById("subtract");
     // When button is clicked
     $("#add").click(function () {
         if (w % 3 == 0) {
             q = q + 1;
-            alert("A room is added")
+            alert("new room is added")
             // Display total
             document.getElementById("q").value = q;
         }

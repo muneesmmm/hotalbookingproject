@@ -188,5 +188,23 @@ module.exports = {
                 resolve(response)
             })
         })
-    }
+    } ,
+    getroomDatails: (id) => {
+        return new Promise(async (resolve, reject) => {
+            let data=await db.get().collection(collection.ROOMBOOKING_COLLECTION).find({ hotelid:id}) .toArray()
+            console.log("/********************/",data);         
+            resolve(data)
+        })
+
+    } 
+//      ,
+//     getuser: (id) => {
+//         return new Promise(async (resolve, reject) => {
+//         let data=await db.get().collection(collection.ROOMBOOKING_COLLECTION).find({ hotelid:id}).toArray()
+//             let user=await db.get().collection(collection.USER_COLLECTION).find({_id:objectId(data.userid)}).toArray()
+//             resolve(user) 
+//     })
+    
+// },
+
 }

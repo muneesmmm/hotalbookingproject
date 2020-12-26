@@ -56,7 +56,8 @@ router.get('/Roombooing/:id', verifylogin, async (req, res) => {
   let user = req.session.user
   
   userHelpers.getRoomDetails(req.params.id).then((rooms) => {
-    res.render('user/Roombooing', { user, rooms })
+    
+    res.render('user/Roombooing', { user, rooms,email:user._json.email })
   })
 })
 router.get('/hotels/:id', (req, res) => {
@@ -75,26 +76,72 @@ router.post('/search',(req, res) => {
     res.render('user/hotels', { hotels,city:req.body.city })
   })
 })
-router.get('/make-payment',async (req, res) => {
-  let total=await userHelpers.getTotalAmount(req.session.user._id)
+router.get('/make-payment/:id',async (req, res) => {
+  let data= await userHelpers.getTotalAmount(req.params.id)
+  let bookingid=data._id
+    console.log("/**************/",data);
+    let day1=new Date(data.checkIn)
+    let day2=new Date(data.checkOut)
+    let diff=parseInt((day2-day1)/(1000*60*60*24))
+    console.log("day",diff);
+    let total=data.Price*data.Room
+    let Amount=diff*total
+//     userHelpers.placeOrder(data,Amount).then((bookingid)=>{
+//       if(req.body['payment-method']==='COD'){
+//         res.json({codSuccess:true})
+//       }else{
+//         userHelpers.generateRazorpay(bookingid,Amount).then((response)=>{
+          
+//           res.json(response)
+//         })
+//       }
+  
+  
+// })
+    res.render('user/make-payment',{Amount,user:req.session.user,bookingid})
+  
+})
+router.post('/make-payment', async(req, res) => {
   console.log(req.body);
-  res.render('user/make-payment',{total,user:req.session.user})
-})
-router.post('/make-payment', (req, res) => {
-  let persons=req.body.adults
-        let room=req.body.rooms
-        let users=persons/room
-        console.log(persons);
-        if(users>3 || room==0){
-          console.log("add new room");
-      }else{
-  userHelpers.addBookedroom(req.body).then((response) => {
-    console.log(response)
-    req.session.loggedIn = true
-    res.render('user/make-payment')
+  let details=req.body
+  let data= await userHelpers.getTotalAmount(req.body.id)
+  let day1=new Date(data.checkIn)
+  let day2=new Date(data.checkOut)
+  let diff=parseInt((day2-day1)/(1000*60*60*24))
+  console.log("day",diff);
+  let total=data.Price*data.Room
+  let Amount=diff*total
+  let bookingid=data._id
+  userHelpers.placeOrder(details,data,Amount).then((orderId)=>{
+    if(req.body['payment-method']==='COD'){
+      res.json({codSuccess:true})
+    }else{
+          userHelpers.generateRazorpay(orderId,Amount).then((response)=>{
+            
+            res.json(response)
+          })
+    }
+    
+    
   })
-}
 })
+router.get('/view-bookings',(req, res) => {
+  let user=req.session.user._id
+  userHelpers.getbookedroom(user).then((rooms) => {
+    console.log("|-----------------------------------------|", rooms);
+  res.render('user/view-booking', {user, rooms })
+})
+})
+router.post('/add-booking', async(req, res) => {
+    userHelpers.addBookedroom(req.body).then((response) => {
+    console.log("+++++++++++",response)
+    res.redirect('/view-bookings')
+    
+    
+  
+})
+})
+
 
 
 
@@ -110,7 +157,6 @@ router.get('/good', (req, res) => {
 
 // Auth Routes
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
   function (req, res) {
     // Successful authentication, redirect home.

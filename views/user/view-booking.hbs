@@ -1,0 +1,47 @@
+<style>
+  table{
+  counter-reset: section;
+}
+.count::before{
+  counter-increment: section;
+  content: counter(section);
+}
+</style>
+<div class="container mt-5">
+  <div class="row mt-4">
+    
+   </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Room Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">price</th>
+        <th scope="col">Payment status</th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody>
+       {{#each rooms}} 
+      <tr>
+        <th class="count" scope="row"></th>
+        <td>{{this.name}}<br>({{this.email}})</td>
+        <td><img style="width:70px;height:60px" src="/room-images/{{this.roomid}}.jpg">{{this.roomname}}</td>
+        <td>{{this.type}}</td>
+        <td>{{this.Price}}</td>
+        <td>{{this.status}}</td>
+        <td><a href="/make-payment/{{this._id}}" class="btn btn-primary">Pay Now</a>
+           <a href="/hotel/detete-room/{{this._id}}" class="btn btn-danger" onclick="return confirm('are you want to delete {{this.name}} ?')">Cancel</a></td>
+          
+      </tr>
+     {{/each}}
+    </tbody>
+  </table>
+  <script src="/hotelHome/assets/js/jquery.min.js"></script>
+  <script src="/hotelHome/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/hotelHome/assets/js/bs-init.js"></script>
+  <script src="/hotelHome/https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
+  <script src="/hotelHome/assets/js/Sidebar-Menu.js"></script>
