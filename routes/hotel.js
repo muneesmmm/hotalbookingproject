@@ -139,14 +139,101 @@ router.get('/rooms', async (req, res) => {
   res.render('hotel/rooms', { hotel: req.session.hotel, rooms })
   req.session.hotelloggedIn = true
 })
+// router.get('/view-booking', async (req, res) => {
+//   // hotelHelpers.getuser(req.session.hotel._id).then((user) => {
+//   //   console.log("|**************************|", user);
+//     hotelHelpers.getroomDatails(req.session.hotel._id).then((rooms) => {
+//       console.log("|-----------------------------------------|", rooms);
+//       res.render('hotel/view-booking', { hotel: req.session.hotel, rooms })
+//       req.session.hotelloggedIn = true
+//     })
+//   })
 router.get('/view-booking', async (req, res) => {
-  // hotelHelpers.getuser(req.session.hotel._id).then((user) => {
-  //   console.log("|**************************|", user);
-    hotelHelpers.getroomDatails(req.session.hotel._id).then((rooms) => {
+  hotelHelpers.getroomDatails(req.session.hotel._id).then((room) => {
+    hotelHelpers.getbooked(req.session.hotel._id).then((rooms) => {
       console.log("|-----------------------------------------|", rooms);
-      res.render('hotel/view-booking', { hotel: req.session.hotel, rooms })
-      req.session.hotelloggedIn = true
+      res.render('hotel/view-booking', { hotel: req.session.hotel, rooms, room })
+    })
+
+  })
+})
+router.get('/view-cancelled', async (req, res) => {
+  hotelHelpers.getcancelled(req.session.hotel._id).then((rooms) => {
+    console.log("|-----------------------------------------|", rooms);
+    res.render('hotel/cancelled', { hotel: req.session.hotel, rooms})
+  })
+
+})
+router.get('/edit-checkin/:id', (req, res) => {
+  let id = req.params.id
+  console.log("//*************//", id)
+  hotelHelpers.checkin(id).then((response) => {
+    res.redirect('/hotel/view-booking')
+  })
+
+})
+router.get('/edit-checkout/:id', (req, res) => {
+  let id = req.params.id
+  console.log("//*************//", id)
+  hotelHelpers.checkout(id).then((response) => {
+    res.redirect('/hotel/view-booking')
+  })
+
+})
+router.get('/add-penalty/:id', (req, res) => {
+  let id = req.params.id
+  console.log(id);
+  res.render('hotel/add-penalty', { id, hotel: req.session.hotel })
+
+
+})
+router.post('/add-penalty', (req, res) => {
+  hotelHelpers.addpenaty(req.body).then((data) => {
+    console.log(data);
+    res.redirect('/hotel/view-booking')
+  })
+})
+router.get('/view-penalty', (req, res) => {
+  hotelHelpers.viewpenalty().then((data) => {
+    console.log("|-----------------------------------------|", data);
+
+    res.render('hotel/view-penalty', { hotel: req.session.hotel, data })
+  })
+})
+router.get('/pay-penalty/:id',async (req, res) => {
+  hotelHelpers.getpenaltyAmount(req.params.id).then((data)=>{
+    let paymentid=data._id
+    Amount=data.totalAmount
+    console.log("/**************/",data);
+    res.render('hotel/pay-penalty',{hotel: req.session.hotel,paymentid,Amount})
+
+  })
+  
+})
+router.post('/pay-refund', async(req, res) => {
+  console.log("dddaaattaaa",req.body);
+  let data= await hotelHelpers.getpenaltyAmount(req.body.id)
+  console.log("......",data);
+  let Amount=data.totalAmount
+  hotelHelpers.penalty(data,Amount).then((data)=>{
+    console.log("///",data);
+    console.log(Amount);
+    hotelHelpers.generateRazorpay1(data,Amount).then((response)=>{
+            
+            res.json(response)
+          })
     })
   })
-// })
+  router.post('/verify-payment',async(req,res)=>{
+    console.log("details",req.body);
+    let hotels = await hotelHelpers.getHotelDatails(req.session.hotel._id)
+    console.log(hotels);
+    hotelHelpers.verifyPayment1(req.body).then(()=>{
+
+  
+    }).catch((err)=>{
+      console.log('faileddddddddd');
+      res.json({status:false,errMsg:''})
+    })
+  })
 module.exports = router;

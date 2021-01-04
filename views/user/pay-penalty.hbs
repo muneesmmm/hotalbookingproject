@@ -126,13 +126,13 @@
     $("#checkout-form").submit((e) => {
         e.preventDefault()
         $.ajax({
-            url: '/make-payment',
+            url: '/pay-penalty',
             method: 'post',
             data: $('#checkout-form').serialize(),
             success: (response) => {
                 alert(response)
                 if (response.codSuccess) {
-                    location.href = '/view-bookings'
+                    location.href = '/view-penalty'
                 } else {
                     razorpayPayment(response)
                 }
@@ -152,7 +152,7 @@
                     {{!-- alert(response.razorpay_payment_id);
                     alert(response.razorpay_order_id);
                     alert(response.razorpay_signature) --}}
-                    verifyPayment(response,order)
+                    verifyPayment1(response,order)
                 },
                 "prefill": {
                     "name": "Shopper",
@@ -169,7 +169,7 @@
             var rzp1 = new Razorpay(options);
             rzp1.open();
     }
-    function verifyPayment(payment,order){
+    function verifyPayment1(payment,order){
         $.ajax({
             url:'/verify-payment',
             data:{

@@ -9,19 +9,14 @@
 </style>
 <div class="container mt-5">
   <div class="row mt-4">
-    
-   </div>
-  <table class="table">
+  <div class="col">
+   <table class="table"">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Customer Name</th>
-        <th scope="col">Room Name</th>
-        <th scope="col">Type</th>
-        
+        <th scope="col">user Name</th>
+          <th scope="col">Amount</th>    
         <th scope="col">Payment status</th>
-        <th scope="col">Check In </th>
-        <th scope="col">Check Out</th>
         <th></th>
 
       </tr>
@@ -30,19 +25,14 @@
        {{#each rooms}} 
       <tr>
         <th class="count" scope="row"></th>
-        <td>{{this.name}}<br>({{this.email}})</td>
-        <td><img style="width:70px;height:60px" src="/room-images/{{this.roomid}}.jpg">{{this.roomname}}</td>
-        <td>{{this.type}}</td>
+        <td>{{this.username}}</td>
+        <td>{{this.totalAmount}}</td>
         <td>{{this.status}}</td>
-        <td>{{this.chn}}</td>
-        <td>{{this.cho}}</td>
-        <td><a href="/make-payment/{{this._id}}" class="btn btn-primary" id="pay">Pay Now</a>
-           <a href="/detete-room/{{this._id}}" class="btn btn-danger" id="btn" onclick="return confirm('do you want to cancel ?')" >Cancel</a></td>
-          
-      </tr>
+        <td align="right"><a href="/hotel/pay-penalty/{{this._id}}" class="btn btn-primary" id="pay">Refund now</a></td>
      {{/each}}
     </tbody>
-  </table>
+  </table></div>
+  </div>
   <script src="/hotelHome/assets/js/jquery.min.js"></script>
   <script src="/hotelHome/assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="/hotelHome/assets/js/bs-init.js"></script>

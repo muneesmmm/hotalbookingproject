@@ -42,16 +42,7 @@ router.get('/view-hotels/:id', async (req, res) => {
   console.log("/*********************/", rooms);
   res.render('user/view-hotels', { rooms, hotels, Guser })
 })
-// router.get('/add-to-userroom/:id',(req,res)=>{
-//   console.log("api call") 
-//   let user = req.session.user
 
-//   let data=userHelpers.adduserRoom(req.params.id,req.session.user._id)
-//   console.log(data);
-//   userHelpers.getRoomDetails(req.params.id).then((rooms) => {
-//     res.render('user/Roombooing', { user, rooms })
-//   })
-// })
 router.get('/Roombooing/:id', verifylogin, async (req, res) => {
   let user = req.session.user
   
@@ -86,33 +77,22 @@ router.get('/make-payment/:id',async (req, res) => {
     console.log("day",diff);
     let total=data.Price*data.Room
     let Amount=diff*total
-//     userHelpers.placeOrder(data,Amount).then((bookingid)=>{
-//       if(req.body['payment-method']==='COD'){
-//         res.json({codSuccess:true})
-//       }else{
-//         userHelpers.generateRazorpay(bookingid,Amount).then((response)=>{
-          
-//           res.json(response)
-//         })
-//       }
-  
-  
-// })
+
     res.render('user/make-payment',{Amount,user:req.session.user,bookingid})
   
 })
 router.post('/make-payment', async(req, res) => {
-  console.log(req.body);
   let details=req.body
+  console.log("23030300",details);
   let data= await userHelpers.getTotalAmount(req.body.id)
   let day1=new Date(data.checkIn)
   let day2=new Date(data.checkOut)
   let diff=parseInt((day2-day1)/(1000*60*60*24))
-  console.log("day",diff);
   let total=data.Price*data.Room
   let Amount=diff*total
-  let bookingid=data._id
   userHelpers.placeOrder(details,data,Amount).then((orderId)=>{
+    console.log("000000000000",orderId);
+    
     if(req.body['payment-method']==='COD'){
       res.json({codSuccess:true})
     }else{
@@ -125,11 +105,53 @@ router.post('/make-payment', async(req, res) => {
     
   })
 })
+router.get('/pay-penalty/:id',async (req, res) => {
+  userHelpers.getpenaltyAmount(req.params.id).then((data)=>{
+    let bookingid=data._id
+    Amount=data.amount
+    console.log("/**************/",data);
+    res.render('user/pay-penalty',{user:req.session.user,bookingid,Amount})
+
+  })
+  
+})
+router.post('/pay-penalty', async(req, res) => {
+  let data= await userHelpers.getpenaltyAmount(req.body.id)
+  console.log(data);
+  let Amount=data.amount
+  userHelpers.penalty(data,Amount).then((orderId)=>{
+    console.log("///",orderId);
+    console.log(Amount);
+          userHelpers.generateRazorpay1(orderId,Amount).then((response)=>{
+            
+            res.json(response)
+          })
+    })
+  })
 router.get('/view-bookings',(req, res) => {
   let user=req.session.user._id
   userHelpers.getbookedroom(user).then((rooms) => {
     console.log("|-----------------------------------------|", rooms);
+
   res.render('user/view-booking', {user, rooms })
+})
+})
+router.get('/bookedhotels',async(req, res) => {
+  let user=req.session.user._id
+  let room = await userHelpers.getconfirmbooked(user)
+  userHelpers.getbooked(user).then((rooms) => {
+    
+    console.log("|-----------------------------------------|", rooms);
+
+  res.render('user/bookedhotels', {user, rooms ,room})
+    })
+})
+router.get('/view-penalty',(req, res) => {
+  let user=req.session.user._id
+  userHelpers.viewpenalty(user).then((data) => {
+    console.log("|-----------------------------------------|", data);
+
+  res.render('user/view-penalty', {user, data })
 })
 })
 router.post('/add-booking', async(req, res) => {
@@ -141,7 +163,22 @@ router.post('/add-booking', async(req, res) => {
   
 })
 })
+router.get('/cancel-hotel/:id', (req, res) => {
+  let id = req.params.id
+  console.log("//*************//", id)
+  userHelpers.checkout(id).then((response) => {
+    res.redirect('/bookedhotels')
+  })
 
+})
+router.get('/detete-room/:id', (req, res) => {
+  let room = req.params.id
+  console.log("//*************//", room)
+  userHelpers.deleteRoom(room).then((response) => {
+    res.redirect('/view-bookings')
+  })
+
+})
 
 
 
@@ -168,6 +205,36 @@ router.get('/logout', (req, res) => {
   req.session.user = null;
   req.logout();
   res.redirect('/');
+})
+router.post('/verify-payment',(req,res)=>{
+  userHelpers.verifyPayment(req.body).then(()=>{
+    console.log("details",req.body);
+    
+    userHelpers.changePaymentStatus(req.body['order[receipt]']).then(()=>{
+      console.log('sucesssssssssss');
+      res.json({status:true})
+
+    })
+
+  }).catch((err)=>{
+    console.log('faileddddddddd');
+    res.json({status:false,errMsg:''})
+  })
+})
+router.post('/verify-payment1',(req,res)=>{
+  userHelpers.verifyPayment1(req.body).then(()=>{
+    console.log("details",req.body);
+    
+    userHelpers.changePaymentStatus1(req.body['order[receipt]']).then(()=>{
+      console.log('sucesssssssssss');
+      res.json({status:true})
+
+    })
+
+  }).catch((err)=>{
+    console.log('faileddddddddd');
+    res.json({status:false,errMsg:''})
+  })
 })
 
 module.exports = router;

@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
     res.render('admin/homepage', { admin })
   } else {
     res.render('admin/login', { "LoginErr": req.session.LoginErr })
-    req.session.LoginErr =false
+    req.session.LoginErr = false
   }
 });
 router.post('/login', (req, res) => {
@@ -30,7 +30,7 @@ router.post('/login', (req, res) => {
     } else {
       req.session.LoginErr = true
       res.redirect('/admin')
-      
+
     }
 
 
@@ -74,7 +74,7 @@ router.post('/add-hotel', (req, res) => {
     req.session.loggedIn = true
     res.redirect('/admin/totalhotals')
     adminHelpers.addCity(req.body).then((response) => {
-      console.log("//'.//////////////..//",response.city);
+      console.log("//'.//////////////..//", response.city);
       req.session.admin = response
       req.session.loggedIn = true
     })
@@ -83,30 +83,64 @@ router.post('/add-hotel', (req, res) => {
     req.session.admin = response
     req.session.loggedIn = true
   })
-}) 
-router.get('/detete-hotel/:id',(req,res)=>{
-  let hotel=req.params.id
+})
+router.get('/detete-hotel/:id', (req, res) => {
+  let hotel = req.params.id
   console.log(hotel)
-  adminHelpers.deleteHotel(hotel).then((response)=>{
+  adminHelpers.deleteHotel(hotel).then((response) => {
     res.redirect('/admin/totalhotals')
   })
 
 })
-router.get('/edit-hotel/:id',async(req,res)=>{
-  let hotels=await adminHelpers.getHotelDatails(req.params.id)
+router.get('/edit-hotel/:id', async (req, res) => {
+  let hotels = await adminHelpers.getHotelDatails(req.params.id)
   console.log(hotels);
-  res.render('admin/edit-hotel',{admin:true,hotels})
+  res.render('admin/edit-hotel', { admin: true, hotels })
 
 })
-router.post('/edit-hotel/:id',(req,res)=>{
-  adminHelpers.updateHotel(req.params.id,req.body).then(()=>{
+router.post('/edit-hotel/:id', (req, res) => {
+  adminHelpers.updateHotel(req.params.id, req.body).then(() => {
     res.redirect('/admin/totalhotals')
-    
-    // if(req.files.image){
-    //   let id=req.params.id
-    //   let image=req.files.image
-    //   image.mv('./public/hotel-images/'+id+'.jpg')
-    // }
   })
 })
+router.get('/view-booking', (req, res) => {
+  adminHelpers.getroomDatails().then((rooms) => {
+    console.log("|-----------------------------------------|", rooms);
+
+    res.render('admin/view-booking', { admin: true, rooms })
+  })
+})
+router.get('/view-city', (req, res) => {
+  adminHelpers.getcityDatails().then((city) => {
+    console.log("|-----------------------------------------|", city);
+
+    res.render('admin/view-city', { admin: true, city })
+  })
+})
+router.get('/detete-room/:id', (req, res) => {
+  let room = req.params.id
+  console.log("//*************//", room)
+  adminHelpers.deleteRoom(room).then((response) => {
+    res.redirect('/admin/view-booking')
+  })
+
+})
+router.get('/edit-city/:id', async (req, res) => {
+  let city = await adminHelpers.getCity(req.params.id)
+  console.log(city);
+  res.render('admin/edit-city', { admin: true, city })
+})
+router.post('/edit-city/:id', (req, res) => {
+  adminHelpers.updateCity(req.params.id, req.body).then((id) => {
+    console.log(req.body);
+    res.redirect('/admin/view-city')
+
+    if (req.files.image) {
+      let id = req.params.id
+      let image = req.files.image
+      image.mv('./public/city-images/' + id + '.jpg')
+    }
+  })
+})
+
 module.exports = router;

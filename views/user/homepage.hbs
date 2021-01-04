@@ -5,19 +5,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>hotal</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+ <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almendra+SC">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
     <link rel="stylesheet" href="assets/css/Article-List.css">
     <link rel="stylesheet" href="assets/css/Card-Group1-Shadow.css">
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
     <link rel="stylesheet" href="assets/css/Header-Dark.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Swiper-Slider-Card-For-Blog-Or-Product-1.css">
+    <link rel="stylesheet" href="assets/css/Swiper-Slider-Card-For-Blog-Or-Product.css">
     <link rel="stylesheet" href="/viewhotel/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/viewhotel/assets/css/dh-card-image-left-dark.css">
     <link rel="stylesheet" href="/viewhotel/assets/css/styles.css">
@@ -33,7 +38,8 @@
                             navigation</span><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navcol-1">
                         <ul class="nav navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="/view-bookings">Booked Hotels</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/bookedhotels">Booked Hotels</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/view-penalty">Penalty</a></li>
                             <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
                                     aria-expanded="false" href="#">Dropdown </a>
                                 <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a
@@ -47,12 +53,12 @@
                             </div>
                         </form><span class="navbar-text"><a class="login" href="/google">Log In</a></span><a
                             class="btn btn-light action-button" role="button" href="#">Sign Up</a>
-                        
+
                     </div>
                     <div class="collapse navbar-collapse ml-5">
-                                
-                        </div>
-                  {{#if user}}  <div class="collapse navbar-collapse" id="navbar-list-4">
+
+                    </div>
+                    {{#if user}} <div class="collapse navbar-collapse" id="navbar-list-4">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -61,10 +67,10 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="#">User :{{#if user}}
-                                {{user.displayName}}
-                                {{else}}
-                                Account
-                                {{/if}}</a>
+                                        {{user.displayName}}
+                                        {{else}}
+                                        Account
+                                        {{/if}}</a>
                                     <a class="dropdown-item" href="#">{{email}}</a>
                                     <a class="dropdown-item" href="/user/view-profile">Edit Profile</a>
                                     <a class="dropdown-item" href="/logout">Log Out</a>
@@ -92,8 +98,8 @@
     </div>
     <div></div>
 
-    </nav>
-            <div class="svg-container">
+
+    <div class="svg-container">
         <div class="waveWrapper waveAnimation">
             <div class="waveWrapperInner bgTop">
                 <div class="wave waveTop"
@@ -115,44 +121,108 @@
                     navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="col">
                 <form action="/search" method="POST">
-                <div class="row">
-                    <div class="col text-center" style="width: 220px;"><span></span>
-                        <header></header>
-                        <header></header><span><strong>Destination</strong></span><input
-                            class="align-content-center align-self-center flex-wrap-reverse" type="text"
-                            style="width: 166px;border-radius: 20px;filter: invert(0%);" name="city" placeholder="Destination">
+                    <div class="row">
+                        <div class="col text-center" style="width: 220px;"><span></span>
+                            <header></header>
+                            <header></header><span><strong>Destination</strong></span><input
+                                class="align-content-center align-self-center flex-wrap-reverse" type="text"
+                                style="width: 166px;border-radius: 20px;filter: invert(0%);" name="city"
+                                placeholder="Destination">
+                        </div>
+                        <div class="col text-center align-content-center align-self-center" style="width: 220px;"><span
+                                class="align-content-center align-self-center"></span><strong
+                                class="align-content-center align-self-center">Check in</strong><input
+                                class="align-content-center align-self-center flex-wrap-reverse visible" type="date"
+                                style="border-radius: 20px;width: 166px;"></div>
+                        <div class="col text-center align-content-center align-self-center" style="width: 220px;">
+                            <strong class="align-content-center align-self-center">Check Out</strong><input
+                                class="align-content-center align-self-center flex-wrap-reverse" type="date"
+                                style="border-radius: 20px;width: 166px;">
+                        </div>
+                        <div class="col text-center align-content-center align-self-center" style="width: 220px;">
+                            <strong class="align-content-center align-self-center">Guest&amp;Room</strong><select
+                                class="align-content-center align-self-center flex-wrap-reverse"
+                                style="min-width: 0px;width: 166px;height: 30px;border-radius: 47px;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" selected="">3</option>
+                            </select>
+                        </div>
+                        <div class="col text-center d-xl-flex align-content-center align-self-center justify-content-xl-center"
+                            style="margin-top: 0px;width: 220px;height: 54px;"><button
+                                class="btn btn-primary active align-content-center align-self-center flex-wrap-reverse"
+                                type="submit"
+                                style="border-radius: 18px;text-align: justify;padding-top: 6px;margin-top: 15px;height: 30px;">Search</button>
+                        </div>
                     </div>
-                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><span
-                            class="align-content-center align-self-center"></span><strong
-                            class="align-content-center align-self-center">Check in</strong><input
-                            class="align-content-center align-self-center flex-wrap-reverse visible" type="date"
-                            style="border-radius: 20px;width: 166px;"></div>
-                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong
-                            class="align-content-center align-self-center">Check Out</strong><input
-                            class="align-content-center align-self-center flex-wrap-reverse" type="date"
-                            style="border-radius: 20px;width: 166px;"></div>
-                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong
-                            class="align-content-center align-self-center">Guest&amp;Room</strong><select
-                            class="align-content-center align-self-center flex-wrap-reverse"
-                            style="min-width: 0px;width: 166px;height: 30px;border-radius: 47px;">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3" selected="">3</option>
-                        </select></div>
-                    <div class="col text-center d-xl-flex align-content-center align-self-center justify-content-xl-center"
-                        style="margin-top: 0px;width: 220px;height: 54px;"><button
-                            class="btn btn-primary active align-content-center align-self-center flex-wrap-reverse"
-                            type="submit"
-                            style="border-radius: 18px;text-align: justify;padding-top: 6px;margin-top: 15px;height: 30px;">Search</button>
-                    </div>
-                </div></form>
+                </form>
             </div>
         </div>
     </nav>
+    </nav>
+    <nav class="navbar navbar-dark fixed-top bg-dark off-canvas" data-right-drawer="0" data-open-drawer="1">
+        <div class="container-fluid flex-column"><button class="btn btn-dark drawer-knob" type="button"
+                data-open="drawer"><i class="fas fa-bars"></i></button>
+            <div class="d-flex justify-content-between brand-line"><a class="navbar-brand" href="#">Brand</a><button
+                    class="btn btn-dark" type="button" data-dismiss="drawer"><span class="sr-only">Toggle
+                        Navigation&nbsp;</span><i class="fas fa-times"></i></button></div>
+            <ul class="nav navbar-nav flex-column drawer-menu">
+                <li class="nav-item"><a class="nav-link active" href="#">First Item</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Second Item</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Third Item</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Nav Item</a></li>
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+            </ul>
+            <ul class="nav navbar-nav flex-column bottom-nav">
+                <li class="nav-item"><a class="nav-link active" href="#">First Item</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Second Item</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Third Item</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="blog-slider">
+        <div class="blog-slider__wrp swiper-wrapper">
+            <div class="blog-slider__item swiper-slide">
+                <div></div>
+                <div class="blog-slider__img"><img src="assets/img/blog-1.jpg"></div>
+                <div class="blog-slider__content"><span class="blog-slider__code">26 December 2019</span>
+                    <div class="blog-slider__title">Lorem Ipsum Dolor</div>
+                    <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae
+                        voluptate repellendus magni illo ea animi? </div><a class="class=&quot;blog-slider__button"
+                        href="#">READ MORE</a>
+                </div>
+            </div>
+            <div class="blog-slider__item swiper-slide">
+                <div></div>
+                <div class="blog-slider__img"><img src="assets/img/blog-2.jpg"></div>
+                <div class="blog-slider__content"><span class="blog-slider__code">26 December 2019</span>
+                    <div class="blog-slider__title">Lorem Ipsum Dolor</div>
+                    <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae
+                        voluptate repellendus magni illo ea animi? </div><a class="class=&quot;blog-slider__button"
+                        href="#">READ MORE</a>
+                </div>
+            </div>
+            <div class="blog-slider__item swiper-slide">
+                <div></div>
+                <div class="blog-slider__img"><img src="assets/img/blog-3.jpg"></div>
+                <div class="blog-slider__content"><span class="blog-slider__code">26 December 2019</span>
+                    <div class="blog-slider__title">Lorem Ipsum Dolor</div>
+                    <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae
+                        voluptate repellendus magni illo ea animi? </div><a class="class=&quot;blog-slider__button"
+                        href="#">READ MORE</a>
+                </div>
+            </div>
+            <div class="blog-slider__pagination"></div>
+        </div>
+    </div>
+    <div data-aos="flip-up" data-aos-duration="600"></div>
+    <div></div>
+
     <div data-aos="flip-up" data-aos-duration="600"></div>
     <div></div>
     <div class="article-list">
-        <div class="container" data-aos="fade-up" style="margin-top: 50px;">
+        <div class="container" data-aos="fade-up" style="margin-top:0px;">
             <div class="intro">
                 <h2 class="text-center" style="margin-top: 0px;">Popular Destinations</h2>
                 <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh
@@ -162,7 +232,7 @@
             <div class="row justify-content-center align-items-center articles">
                 {{#each destination}}
                 <div class="col-sm-6 col-md-3 item"><a href="/hotels/{{this._id}}"><img class="img-fluid"
-                            data-aos="fade-up" src="assets/img/thailand.jpeg"></a>
+                            data-aos="fade-up" src="/city-images/{{this._id}}.jpg"></a>
                     <h3 data-aos="fade" class="name">{{this.city}}</h3>
                     <p data-aos="fade" class="description"></p><a class="action" href="#"><i
                             class="fa fa-arrow-circle-right"></i></a>
@@ -193,7 +263,7 @@
             <div class="row">
                 {{#each hotels}}
                 <div class="col-lg-4">
-                    <div class="card mb-4 box-shadow rounded-0"><img class="card-img-top  d-block rounded-0"
+                    <div class="card mb-4 box-shadow rounded-0 "data-aos="fade-up"><img class="card-img-top  d-block rounded-0"
                             height="250px" src="/hotel-images/{{this._id}}.jpg">
                         <div class="card-body">
                             <h4 class="card-title">{{this.hotelname}}</h4>
@@ -230,128 +300,35 @@
                                 LUXURIES</h1>
                         </div>
                     </div>
-                    {{!-- <div class="row">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body"
-                                    style="margin-bottom: 17px;border-radius: 0px;background: url(&quot;assets/img/building.jpg&quot;);">
-                                    <h4 class="card-title">Title</h4>
-                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                                        justo odio,
-                                        dapibus ac&nbsp;</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body" style="background: url(&quot;assets/img/thailand.jpeg&quot;);">
-                                    <h4 class="card-title">Title</h4>
-                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                                        justo odio,
-                                        dapibus ac&nbsp;</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body"
-                                    style="background: url(&quot;assets/img/canada.jpeg&quot;) round;background-size: cover;">
-                                    <h4 class="card-title">Title</h4>
-                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                                        justo odio,
-                                        dapibus ac&nbsp;</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body" style="background: url(&quot;assets/img/desk.jpg&quot;);">
-                                    <h4 class="card-title">Title</h4>
-                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                                        justo odio,
-                                        dapibus ac&nbsp;</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                                        justo odio,
-                                        dapibus ac&nbsp;</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                                        justo odio,
-                                        dapibus ac&nbsp;</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                                        justo odio,
-                                        dapibus ac&nbsp;</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
-                                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                                        justo odio,
-                                        dapibus ac&nbsp;</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="footer-basic">
+                        <footer>
+                            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i
+                                        class="icon ion-social-snapchat"></i></a><a href="#"><i
+                                        class="icon ion-social-twitter"></i></a><a href="#"><i
+                                        class="icon ion-social-facebook"></i></a></div>
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><a href="#">Home</a></li>
+                                <li class="list-inline-item"><a href="#">Services</a></li>
+                                <li class="list-inline-item"><a href="#">About</a></li>
+                                <li class="list-inline-item"><a href="#">Terms</a></li>
+                                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                            </ul>
+                            <p class="copyright">Company Name © 2017</p>
+                        </footer>
                     </div>
-                </div>
-            </div> --}}
-            <div class="footer-basic">
-                <footer>
-                    <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i
-                                class="icon ion-social-snapchat"></i></a><a href="#"><i
-                                class="icon ion-social-twitter"></i></a><a href="#"><i
-                                class="icon ion-social-facebook"></i></a></div>
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><a href="#">Home</a></li>
-                        <li class="list-inline-item"><a href="#">Services</a></li>
-                        <li class="list-inline-item"><a href="#">About</a></li>
-                        <li class="list-inline-item"><a href="#">Terms</a></li>
-                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-                    </ul>
-                    <p class="copyright">Company Name © 2017</p>
-                </footer>
-            </div>
-            <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-            <script src="assets/js/bs-init.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-            <script src="/viewhotel/assets/js/jquery.min.js"></script>
-            <script src="/viewhotel/assets/bootstrap/js/bootstrap.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
-            <script src="/viewhotel/assets/js/jquery.min.js"></script>
-            <script src="/viewhotel/assets/bootstrap/js/bootstrap.min.js"></script>
-            <link rel="stylesheet" href="/viewhotel/assets/bootstrap/css/bootstrap.min.css">
-            <link rel="stylesheet" href="/viewhotel/assets/css/dh-card-image-left-dark.css">
-            <link rel="stylesheet" href="/viewhotel/assets/css/styles.css">
+                    <script src="assets/js/jquery.min.js"></script>
+                    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+                    <script src="assets/js/bs-init.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+                    <script src="assets/js/Off-Canvas-Sidebar-Drawer-Navbar.js"></script>
+                    <script src="assets/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js"></script>
+                    <script src="assets/js/Swiper-Slider-Card-For-Blog-Or-Product.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
+                    <script src="/viewhotel/assets/js/jquery.min.js"></script>
+                    <script src="/viewhotel/assets/bootstrap/js/bootstrap.min.js"></script>
+                    <link rel="stylesheet" href="/viewhotel/assets/bootstrap/css/bootstrap.min.css">
+                    <link rel="stylesheet" href="/viewhotel/assets/css/dh-card-image-left-dark.css">
+                    <link rel="stylesheet" href="/viewhotel/assets/css/styles.css">
 </body>
 
 </html>

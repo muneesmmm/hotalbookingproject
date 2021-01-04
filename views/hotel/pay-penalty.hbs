@@ -31,46 +31,7 @@
             </div>
         
     
-            <nav class="navbar navbar-light navbar-expand sticky-top bg-light text-monospace navigation-clean"
-        style="padding-top: 0px;padding-bottom: 16px;">
-        <div class="container-fluid"><button class="navbar-toggler" data-toggle="collapse"><span class="sr-only">Toggle
-                    navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="col">
-                <div class="row">
-                    <div class="col text-center" style="width: 220px;"><span></span>
-                        <header></header>
-                        <header></header><span><strong>Destination</strong></span><input
-                            class="align-content-center align-self-center flex-wrap-reverse" type="text"
-                            value="{{hotels.hotelname}}" style="width: 166px;border-radius: 20px;filter: invert(0%);"
-                            placeholder="{{hotels.hotelname}}">
-                    </div>
-                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><span
-                            class="align-content-center align-self-center"></span><strong
-                            class="align-content-center align-self-center">Check in</strong><input
-                            class="align-content-center align-self-center flex-wrap-reverse visible" type="date"
-                            style="border-radius: 20px;width: 166px;"></div>
-                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong
-                            class="align-content-center align-self-center">Check Out</strong><input
-                            class="align-content-center align-self-center flex-wrap-reverse" type="date"
-                            style="border-radius: 20px;width: 166px;"></div>
-                    <div class="col text-center align-content-center align-self-center" style="width: 220px;"><strong
-                            class="align-content-center align-self-center">Guest&amp;Room</strong><select
-                            class="align-content-center align-self-center flex-wrap-reverse"
-                            style="min-width: 0px;width: 166px;height: 30px;border-radius: 47px;">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3" selected="">3</option>
-                        </select></div>
-                    <div class="col text-center d-xl-flex align-content-center align-self-center justify-content-xl-center"
-                        style="margin-top: 0px;width: 220px;height: 54px;"><button
-                            class="btn btn-primary active align-content-center align-self-center flex-wrap-reverse"
-                            type="button"
-                            style="border-radius: 18px;text-align: justify;padding-top: 6px;margin-top: 15px;height: 30px;">Book
-                            Now</button></div>
-                </div>
-            </div>
-        </div>
-    </nav>
+           
     <section>
     
         <div class="container mt-5">
@@ -105,8 +66,7 @@
                         <input type="radio" name="payment-method" value="Online Payment" checked>
                         <font style="color: aliceblue;size: 16px;"> Online Payment</font>
                         </label><br><br>
-                        <input type="text" name="userid" id="userid" value="{{user._id}}" hidden>
-                        <input type="text" name="id" id="userid" value="{{bookingid}}" hidden>
+                        <input type="text" name="id" id="userid" value="{{paymentid}}" hidden>
                         <button type="submit" class="btn btn-primary" style="width: 150px;">PAY</button>
                     </div>
                     </div>
@@ -126,13 +86,13 @@
     $("#checkout-form").submit((e) => {
         e.preventDefault()
         $.ajax({
-            url: '/make-payment',
+            url: '/hotel/pay-refund',
             method: 'post',
             data: $('#checkout-form').serialize(),
             success: (response) => {
                 alert(response)
                 if (response.codSuccess) {
-                    location.href = '/view-bookings'
+                    location.href = 'hotel/view-penalty'
                 } else {
                     razorpayPayment(response)
                 }
@@ -142,7 +102,7 @@
         function razorpayPayment(order){
             var options = {
                 "key": "rzp_test_kjyHA20dKI0lVy", // Enter the Key ID generated from the Dashboard
-                "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                "amount": order.totalAmount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                 "currency": "INR",
                 "name": "Shopper",
                 "description": "Test Transaction",
@@ -152,7 +112,7 @@
                     {{!-- alert(response.razorpay_payment_id);
                     alert(response.razorpay_order_id);
                     alert(response.razorpay_signature) --}}
-                    verifyPayment(response,order)
+                    verifyPayment1(response,order)
                 },
                 "prefill": {
                     "name": "Shopper",
@@ -169,9 +129,9 @@
             var rzp1 = new Razorpay(options);
             rzp1.open();
     }
-    function verifyPayment(payment,order){
+    function verifyPayment1(payment,order){
         $.ajax({
-            url:'/verify-payment',
+            url:'/hotel/verify-payment',
             data:{
                 payment,
                 order ,

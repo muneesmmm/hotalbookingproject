@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>hotelreg</title>
+    <link rel="stylesheet" href="/asset/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/asset/css/Pretty-Registration-Form.css">
+    <link rel="stylesheet" href="/asset/css/styles.css">
+</head>
+
+<body>
+    <div class="row register-form mt-5 "  > 
+        <div class="col-md-8 offset-md-2">
+            <form class="custom-form" action="/hotel/add-penalty" method="POST">
+                <h1 align="center">Add penaly</h1>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Amount</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" type="text" name="amount"></div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="email-input-field">Reason </label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" type="text" name="reason"></div>
+                </div>
+                <input type="text"value="{{id}}" name="bookingid" hidden>
+                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">I've read and accept the terms and conditions</label></div>
+                <button class="btn btn-light submit-button" type="submit">ADD</button></form>
+        </div>
+        
+    </div>
+    <script src="/asset/js/jquery.min.js"></script>
+    <script src="/asset/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

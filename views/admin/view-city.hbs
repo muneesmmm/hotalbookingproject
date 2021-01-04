@@ -17,31 +17,22 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Customer Name</th>
-        <th scope="col">Room Name</th>
-        <th scope="col">Type</th>
-        <th scope="col">price</th>
-        <th scope="col">Payment status</th>
+        <th scope="col">City</th>
         <th></th>
+
       </tr>
     </thead>
     <tbody>
-      {{#each room}}
+      {{#each city}}
       <tr>
         <th class="count" scope="row"></th>
-        <td>{{this.name}}<br>({{this.email}})</td>
-        <td><img style="width:70px;height:60px" src="/room-images/{{this.roomid}}.jpg">{{this.roomname}}</td>
-        <td>{{this.type}}</td>
-        {{/each}}
-        {{#each rooms}}
-        <td>{{this.totalAmount}}</td>
-        <td>{{this.status}}</td>
-        <td><a href="/hotel/edit-checkin/{{this._id}}" class="btn btn-primary">Checked In</a>
-          <a href="/hotel/edit-checkout/{{this._id}}" class="btn btn-danger">Cheched Out</a>
-          <a href="/hotel/add-penalty/{{this._id}}" class="btn btn-danger">Penalty</a>
+        <td><img style="width:70px;height:60px" src="/city-images/{{this._id}}.jpg"></td>
+        <td>{{this.city}}</td>
+        <td>
+          <a href="/admin/edit-city/{{this._id}}" class="btn btn-primary">Edit</a>
         </td>
       </tr>
       {{/each}}
-
     </tbody>
   </table>
   <script src="/hotelHome/assets/js/jquery.min.js"></script>

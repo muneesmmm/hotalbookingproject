@@ -114,7 +114,7 @@ module.exports = {
     },
     deleteHotel: (room) => {
         return new Promise((resolve, reject) => {
-            db.get().collection(collection.ROOM_COLLECTION).removeOne({ _id: objectId(room) }).then((response) => {
+            db.get().collection(collection.HOTELUSER_COLLECTION).removeOne({ _id: objectId(room) }).then((response) => {
                 console.log(response)
                 resolve(response)
             })
@@ -139,10 +139,56 @@ module.exports = {
                 })
         })
     },
+    updateCity: (id, cityData) => {
+        
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.CITY_COLLECTION)
+                .updateOne({ _id: objectId(id) }, {
+                    $set: {
+                        city: cityData.city
+                    }
+                }).then((response) => {
+                    resolve()
+                })
+        })
+    },
     getHotelDatails: (hotelid) => {
         return new Promise((resolve, reject) => {
             db.get().collection(collection.HOTELUSER_COLLECTION).findOne({ _id: objectId(hotelid) }).then((hotel) => {
                 resolve(hotel)
+            })
+        })
+    },
+    getcityDatails: () => {
+        return new Promise(async(resolve, reject) => {
+            let city=await db.get().collection(collection.CITY_COLLECTION).find({}).toArray()
+                resolve(city)
+            
+        })
+    }
+    ,
+    getCity: (id) => {
+        return new Promise(async(resolve, reject) => {
+            db.get().collection(collection.CITY_COLLECTION).findOne({_id: objectId(id) }).then((city)=>{
+                resolve(city)
+            })
+                
+            
+        })
+    },
+    getroomDatails: () => {
+        return new Promise(async (resolve, reject) => {
+            let data=await db.get().collection(collection.ROOMBOOKING_COLLECTION).find({}) .toArray()
+            console.log("/********************/",data);         
+            resolve(data)
+        })
+
+    } ,
+    deleteRoom: (room) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ROOMBOOKING_COLLECTION).removeOne({ _id: objectId(room) }).then((response) => {
+                console.log(response)
+                resolve(response)
             })
         })
     }

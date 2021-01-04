@@ -161,44 +161,59 @@ module.exports = {
 
         })
     },
+    viewpenalty: (data) => {
+        return new Promise(async (resolve, reject) => {
+            id = await db.get().collection(collection.PENALTY_COLLECTION).findOne({ userid: objectId(data) })
+            console.log("///////////", id);
+
+            details = await db.get().collection(collection.PENALTY_COLLECTION).find({ id }).toArray()
+            resolve(details)
+
+        })
+    },
     getTotalAmount: (id) => {
         return new Promise(async (resolve, reject) => {
             db.get().collection(collection.ROOMBOOKING_COLLECTION).findOne({ _id: objectId(id) }).then((data) => {
-                console.log("//",data);
-                resolve(data)
+                console.log("//", data);
+                resolve(data)   
             })
         })
-    }
-    ,
+    },
     getbookedroom: (id) => {
         return new Promise(async (resolve, reject) => {
-            let data = await db.get().collection(collection.ROOMBOOKING_COLLECTION).find({ userid: id }).toArray()
+            let data = await db.get().collection(collection.ROOMBOOKING_COLLECTION).find({ userid: id,status:'pendin' }).toArray()
             console.log("/********************/", data);
             resolve(data)
         })
-
     },
-    placeOrder: ( data, total) => {
-        console.log('./............./........./.........../', data, total);
-        return new Promise((resolve, reject) => {
+    getconfirmbooked: (id) => {
+        return new Promise(async (resolve, reject) => {
+            let data = await db.get().collection(collection.ROOMBOOKING_COLLECTION).find({ userid: id,status:'success' }).toArray()
+            console.log("/********************/", data);
+            resolve(data)
+        })
+    },
+    getbooked: (id) => {
+        return new Promise(async (resolve, reject) => {
+            let data = await db.get().collection(collection.CONFBOOKING_COLLECTION).find({ userId:id }).toArray()
+            console.log("/********************/", data);
+            resolve(data)
+        })
+    },
+    getpenaltyAmount: (id) => {
+        return new Promise(async (resolve, reject) => {
+            let data = await db.get().collection(collection.PENALTY_COLLECTION ).findOne({ _id:objectId(id) })
+            console.log("/********************/", data.amount);
+            resolve(data)
+        })
 
-            db.get().collection(collection.ROOMBOOKING_COLLECTION)
-            .updateOne({ status: data.status }, {
-                $set: {
-                    status : 'success'
-        }
-            }).then((response) => {
-                resolve(response)
-            })
-    })
-            
     }
-     ,
-    generateRazorpay: (bookingid,total) => {
-        console.log("...................",bookingid);
+    ,
+    generateRazorpay: (bookingid, total) => {
+        console.log("...................", bookingid);
         return new Promise((resolve, reject) => {
             var options = {
-                amount: total*100,  // amount in the smallest currency unit  
+                amount: total * 100,  // amount in the smallest currency unit  
                 currency: "INR",
                 receipt: "" + bookingid
             };
@@ -212,17 +227,16 @@ module.exports = {
             });
         })
     },
-    placeOrder: (details,data, total) => {
-        console.log('./............./........./.........../',details, data, total);
+    placeOrder: (details, data, total) => {
+        console.log('./............./........./.........../', details, data, total);
         return new Promise((resolve, reject) => {
 
             let status = details['payment-methord'] === 'COD' ? 'placed' : 'pending'
             let orderObj = {
-                deliveryDetails: {
                     mobile: details.mobile,
-                    address: details.address,
-                    pincode: details.pincode
-                },
+                    orderid: data._id,
+                    username:data.name,
+                    hotelid:data.hotelid,
                 userId: details.userid,
                 paymentMethord: details['payment-methord'],
                 totalAmount: total,
@@ -231,12 +245,144 @@ module.exports = {
             }
             db.get().collection(collection.CONFBOOKING_COLLECTION).insertOne(orderObj).then((response) => {
                 console.log(details.userid);
-                // db.get().collection(collection.CART_COLLECTION).removeOne({ user: objectId(order.userid) })
+                db.get().collection(collection.ROOMBOOKING_COLLECTION).updateOne({ _id: objectId(data._id) },
+                    {
+                        $set: {
+                            status: 'success',
+                        }
+                    }).then(() => {
+                        resolve()
+                    })
                 console.log('completed');
                 // console.log("*----------------------**",response);
                 resolve(response.ops[0]._id)
             })
         })
     }
-    
+    ,
+    verifyPayment: (details) => {
+        return new Promise((resolve, reject) => {
+            console.log(details);
+            const crypto = require('crypto')
+            let hmac = crypto.createHmac('sha256', 'AYaURNqqGY0qnrZLQAQDJxmw')
+            hmac.update(details['payment[razorpay_order_id]'] + '|' + details['payment[razorpay_payment_id]'])
+            hmac = hmac.digest('hex')
+            if (hmac == details['payment[razorpay_signature]']) {
+                resolve()
+            } else {
+                reject()
+
+            }
+        })
+    },
+    changePaymentStatus: (orderId) => {
+        console.log(orderId);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.CONFBOOKING_COLLECTION).updateOne({ _id: objectId(orderId) },
+                {
+                    $set: {
+                        status: 'success'
+                    }
+                }).then(() => {
+                    resolve()
+                })
+        })
+    },
+    penalty: ( data, total) => {
+        console.log('./............./........./.........../', data, total);
+        return new Promise((resolve, reject) => {
+
+            let orderObj = {
+                bookingid: data.bookingid,
+                totalAmount: total,
+                date: new Date()
+            }
+            db.get().collection(collection.PENALTYPAY_COLLECTION).insertOne(orderObj).then((response) => {
+               
+                db.get().collection(collection.PENALTY_COLLECTION).updateOne({ _id: objectId(data._id) },
+                    {
+                        $set: {
+                            status: 'success',
+                        }
+                    }).then(() => {
+                        resolve()
+                    })
+                console.log('completed');
+                // console.log("*----------------------**",response);
+                resolve(response.ops[0]._id)
+            })
+        })
+    },
+    generateRazorpay1: (bookingid, total) => {
+        console.log("...................", bookingid);
+        console.log("..........+0+0000000000",total);
+        return new Promise((resolve, reject) => {
+            var options = {
+                amount: total * 100,  // amount in the smallest currency unit  
+                currency: "INR",
+                receipt: "" + bookingid
+            };
+            instance.orders.create(options, function (err, booking) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("order:", booking);
+                    resolve(booking)
+                }
+            });
+        })
+    }
+    ,
+    verifyPayment1: (details) => {
+        return new Promise((resolve, reject) => {
+            console.log(details);
+            const crypto = require('crypto')
+            let hmac = crypto.createHmac('sha256', 'AYaURNqqGY0qnrZLQAQDJxmw')
+            hmac.update(details['payment[razorpay_order_id]'] + '|' + details['payment[razorpay_payment_id]'])
+            hmac = hmac.digest('hex')
+            if (hmac == details['payment[razorpay_signature]']) {
+                resolve()
+            } else {
+                reject()
+
+            }
+        })
+    },
+    changePaymentStatus1: (orderId) => {
+        console.log(orderId);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.PENALTYPAY_COLLECTION).updateOne({ _id: objectId(orderId) },
+                {
+                    $set: {
+                        status: 'success'
+                    }
+                }).then(() => {
+                    resolve()
+                })
+        })
+    },
+    deleteRoom: (room) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ROOMBOOKING_COLLECTION).removeOne({ _id: objectId(room) }).then((response) => {
+                console.log(response)
+                resolve(response)
+            })
+        })
+    },
+    checkout: (id) => {
+        console.log(id);
+        return new Promise(async(resolve, reject) => {
+            db.get().collection(collection.CONFBOOKING_COLLECTION)
+                .update({ _id:objectId(id)}, {
+                    $set:  
+                            {
+                        status:"cancelled"
+
+            }
+                }).then((response) => {
+                    resolve(response)
+                })
+        })
+    }
+
 }

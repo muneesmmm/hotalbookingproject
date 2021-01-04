@@ -1,0 +1,61 @@
+<style>
+  table{
+  counter-reset: section;
+}
+.count::before{
+  counter-increment: section;
+  content: counter(section);
+}
+</style>
+<div class="container mt-5">
+  <div class="row mt-4">
+      <a href="/view-bookings" class="btn btn-success ml-auto my-5">View Pending</a>
+    </div>
+  <div class="row">
+    
+  <div class="col">
+   <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Room Name</th>
+        <th scope="col">Check In</th>
+        <th scope="col">Check Out</th>
+          <th scope="col">Amount</th>    
+        <th scope="col">Payment status</th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody>
+       {{#each room}} 
+      <tr>
+        <th class="count" scope="row"></th>
+        <td>{{this.roomname}}</td>
+        <td>{{this.chn}}</td>
+        <td>{{this.cho}}</td>
+        
+                 
+        {{/each}}
+       {{#each rooms}} 
+        <td>{{this.totalAmount}}</td>
+        <td>{{this.status}}</td>
+        <td>
+          <a href="/cancel-hotel/{{this._id}}" class="btn btn-danger">cancel now</a></td></tr>
+     {{/each}}
+    </tbody>
+  </table></div>
+  </div>
+  <script src="/hotelHome/assets/js/jquery.min.js"></script>
+  <script src="/hotelHome/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/hotelHome/assets/js/bs-init.js"></script>
+  <script src="/hotelHome/https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
+  <script src="/hotelHome/assets/js/Sidebar-Menu.js"></script>
+
+  <script>
+document.getElementById("pay").addEventListener("click",function(){
+        setTimeout(function(){
+        $('#btn').fadeOut('3000');
+    },4000);
+});
+</script>

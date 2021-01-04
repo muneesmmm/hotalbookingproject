@@ -1,0 +1,26 @@
+<section>
+     <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Edit Profile</h2>
+            
+<form action="/admin/edit-city/{{city._id}}" method="POST" enctype="multipart/form-data">
+   
+  
+    <label for="exampleInputEmail1">name</label>
+    <input type="text" class="form-control" name="city" value="{{city.city}}" aria-describedby="emailHelp">
+    <label for="">image</label>
+    <img src="/hotel-images/{{hotels._id}}.jpg"  style="width: 100px; height: auto" id="imgView">
+    <input type="file" class="form-control" name="image" onchange="viewImage(event)">
+  <button type="submit" class="btn btn-primary">Submit</button>
+  
+</form>
+ </div>
+ </div>
+ </div>
+</section>
+<script>
+    function viewImage(event){
+        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+    }
+</script> 
