@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>hotal</title>
- <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almendra+SC">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
@@ -99,23 +99,7 @@
     <div></div>
 
 
-    <div class="svg-container">
-        <div class="waveWrapper waveAnimation">
-            <div class="waveWrapperInner bgTop">
-                <div class="wave waveTop"
-                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
-            </div>
-            <div class="waveWrapperInner bgMiddle">
-                <div class="wave waveMiddle"
-                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
-            </div>
-            <div class="waveWrapperInner bgBottom">
-                <div class="wave waveBottom"
-                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
-            </div>
-        </div>
-    </div>
-    <nav class="navbar navbar-light navbar-expand sticky-top bg-light text-monospace navigation-clean"
+    <nav class="navbar navbar-light navbar-expand  bg-light text-monospace navigation-clean"
         style="padding-top: 0px;padding-bottom: 16px;">
         <div class="container-fluid"><button class="navbar-toggler" data-toggle="collapse"><span class="sr-only">Toggle
                     navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -159,8 +143,8 @@
             </div>
         </div>
     </nav>
-    </nav>
-    <nav class="navbar navbar-dark fixed-top bg-dark off-canvas" data-right-drawer="0" data-open-drawer="1">
+    
+    <nav class="navbar navbar-dark fixed-top bg-dark off-canvas" data-right-drawer="0" data-open-drawer="0">
         <div class="container-fluid flex-column"><button class="btn btn-dark drawer-knob" type="button"
                 data-open="drawer"><i class="fas fa-bars"></i></button>
             <div class="d-flex justify-content-between brand-line"><a class="navbar-brand" href="#">Brand</a><button
@@ -183,41 +167,23 @@
     </nav>
     <div class="blog-slider">
         <div class="blog-slider__wrp swiper-wrapper">
+            {{#each hotels}}
             <div class="blog-slider__item swiper-slide">
                 <div></div>
-                <div class="blog-slider__img"><img src="assets/img/blog-1.jpg"></div>
+                <div class="blog-slider__img"><img src="/hotel-images/{{this._id}}.jpg"></div>
                 <div class="blog-slider__content"><span class="blog-slider__code">26 December 2019</span>
-                    <div class="blog-slider__title">Lorem Ipsum Dolor</div>
+                    <div class="blog-slider__title">{{this.hotelname}}</div>
                     <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae
                         voluptate repellendus magni illo ea animi? </div><a class="class=&quot;blog-slider__button"
                         href="#">READ MORE</a>
                 </div>
+                <div class="blog-slider__pagination"></div>
             </div>
-            <div class="blog-slider__item swiper-slide">
-                <div></div>
-                <div class="blog-slider__img"><img src="assets/img/blog-2.jpg"></div>
-                <div class="blog-slider__content"><span class="blog-slider__code">26 December 2019</span>
-                    <div class="blog-slider__title">Lorem Ipsum Dolor</div>
-                    <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae
-                        voluptate repellendus magni illo ea animi? </div><a class="class=&quot;blog-slider__button"
-                        href="#">READ MORE</a>
-                </div>
-            </div>
-            <div class="blog-slider__item swiper-slide">
-                <div></div>
-                <div class="blog-slider__img"><img src="assets/img/blog-3.jpg"></div>
-                <div class="blog-slider__content"><span class="blog-slider__code">26 December 2019</span>
-                    <div class="blog-slider__title">Lorem Ipsum Dolor</div>
-                    <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae
-                        voluptate repellendus magni illo ea animi? </div><a class="class=&quot;blog-slider__button"
-                        href="#">READ MORE</a>
-                </div>
-            </div>
-            <div class="blog-slider__pagination"></div>
+            {{/each}}
         </div>
+        <div data-aos="flip-up" data-aos-duration="600"></div>
+        <div></div>
     </div>
-    <div data-aos="flip-up" data-aos-duration="600"></div>
-    <div></div>
 
     <div data-aos="flip-up" data-aos-duration="600"></div>
     <div></div>
@@ -248,31 +214,15 @@
                     <p style="text-align: center;font-family: 'Almendra SC', serif;">Tope Hotels</p>
                 </div>
             </div>
-
-            {{!-- <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body" data-aos="fade-up-left"
-                        style="background: url(&quot;/hotel-images/{{this._id}}.jpg&quot;);background-size: cover;">
-                        <h4 class="card-title">{{this.hotelname}}</h4>
-                        <h6 class="text-muted card-subtitle mb-2"></h6>
-                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,
-                            dapibus ac .</p>
-                    </div>
-                </div>
-            </div> --}}
             <div class="row">
                 {{#each hotels}}
                 <div class="col-lg-4">
-                    <div class="card mb-4 box-shadow rounded-0 "data-aos="fade-up"><img class="card-img-top  d-block rounded-0"
-                            height="250px" src="/hotel-images/{{this._id}}.jpg">
+                    <div class="card mb-4 box-shadow rounded-0 " data-aos="fade-up"><img
+                            class="card-img-top  d-block rounded-0" height="250px" src="/hotel-images/{{this._id}}.jpg">
                         <div class="card-body">
                             <h4 class="card-title">{{this.hotelname}}</h4>
                             <div class="product-rating">
-                                <i class="fa fa-star" style="border-color: rgb(255,245,0);color: rgb(239,205,25);"></i>
-                                <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
-                                <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
-                                <i class="fa fa-star" style="color: rgb(239,205,25);"></i>
-                                <i class="fa fa-star-half" style="color: rgb(239,205,25);"></i>
+                                <img  src="/images/{{this.star}}.png" style="width: 90px;height: auto;">
                             </div>
                             <h6 class="text-muted card-subtitle mb-2">{{this.place}}</h6>
                             <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,

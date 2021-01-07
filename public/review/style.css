@@ -48,7 +48,7 @@
   
   width: auto;
   height: auto;
-  background: #111;
+  background: rgb(247, 247, 247);
   padding: 20px 30px;
   border: 1px solid #444;
   border-radius: 5px;
@@ -139,7 +139,7 @@ form .textarea textarea{
   outline: none;
   color: #eee;
   border: 1px solid #333;
-  background: #222;
+  background: rgb(179, 179, 179);
   padding: 10px;
   font-size: 17px;
   resize: none;
@@ -157,7 +157,7 @@ form .btn button{
   width: 100%;
   border: 1px solid #444;
   outline: none;
-  background: #222;
+  background: rgb(57, 126, 54);
   color: #999;
   font-size: 17px;
   font-weight: 500;

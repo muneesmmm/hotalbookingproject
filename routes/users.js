@@ -136,6 +136,30 @@ router.get('/view-bookings',(req, res) => {
   res.render('user/view-booking', {user, rooms })
 })
 })
+router.get('/view-reviews/:id',(req, res) => {
+  let user = req.session.user
+  id=req.params.id
+  console.log(id);
+  userHelpers.viewreviews(id).then((review) => {
+    console.log("reviews", review);
+  res.render('user/view-reviews',{id,pic:user.photos[0].value,name:user.displayName,review})
+})
+})
+router.post('/review/:id',(req, res) => {
+  let user = req.session.user
+  id=req.params.id
+  console.log(req.body);
+  
+  userHelpers.review(req.body).then((data) => {
+    userHelpers.viewreviews(id).then((review) => {
+    console.log("reviews", review);
+    console.log(data);
+    res.render('user/view-reviews',{id,pic:user.photos[0].value,name:user.displayName,review})
+
+  })
+  })
+})
+
 router.get('/bookedhotels',async(req, res) => {
   let user=req.session.user._id
   let room = await userHelpers.getconfirmbooked(user)

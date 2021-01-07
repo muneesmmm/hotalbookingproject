@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
+    <!-- <title>Star Rating Form | CodingNepal</title> -->
+    <link rel="stylesheet" href="/review/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <body><form action="/review/{{id}}" method="POST"> 
+    <div class="container">
+      <div class="post">
+        <div class="text">
+Thanks for rating us!</div>
+<div class="edit">
+EDIT</div>
+</div>
+<div class="star-widget">
+          <input type="radio" name="rate" id="rate-5" value="5">
+        <label for="rate-5" class="fas fa-star"></label>
+        <input type="radio" name="rate" id="rate-4" value="4">
+        <label for="rate-4" class="fas fa-star"></label>
+        <input type="radio" name="rate" id="rate-3" value="3">
+        <label for="rate-3" class="fas fa-star"></label>
+        <input type="radio" name="rate" id="rate-2" value="2">
+        <label for="rate-2" class="fas fa-star"></label>
+        <input type="radio" name="rate" id="rate-1" value="1">
+        <label for="rate-1" class="fas fa-star"></label>
+        
+          <header></header>
+          <div class="textarea">
+            <textarea cols="30" placeholder="Describe your experience.." name="desc"></textarea> </div>
+<!-- Due to more textarea tags I got a problem So I've changed the textarea tag to textare. Please correct it. -->
+          
+          <input type="text" name="hotelid" value="{{id}}" hidden>
+          <input type="text" name="username" value="{{name}}" hidden>
+          <input type="text" name="pic" value="{{pic}}" hidden>
+<div class="btn">
+<button type="submit">Post</button>
+          </div></div></form>
+   </div>
+   <div class="container">
+       <fieldset>
+        <table align="left" width="900px">
+    <tbody>
+       {{#each review}} 
+      <tr>
+        <td colspan="2" style="padding-top: 20px;width: 250px;"><img src="{{pic}}" width="40" height="40" class="rounded-circle">{{username}}<img  src="/images/{{rate}}.png" style="width: 90px;height: auto;" align="right"></td></tr>
+        <tr><td style="padding-right:20px;" width="20px"></td><td>{{desc}}</td>
+      </tr>
+     {{/each}}
+    </tbody>
+  </table></fieldset></div>
+ <footer class="bg-primary text-white fixed text-center text-lg-start">
+ 
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2020 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/">M4U.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+</html>
+  <script>
+    
+      const post = document.querySelector(".post");
+      const widget = document.querySelector(".star-widget");
+      const editBtn = document.querySelector(".edit");
+      btn.onclick = ()=>{
+        widget.style.display = "none";
+        post.style.display = "block";
+        editBtn.onclick = ()=>{
+          widget.style.display = "block";
+          post.style.display = "none";
+        }
+        return false;
+      }
+    </script>

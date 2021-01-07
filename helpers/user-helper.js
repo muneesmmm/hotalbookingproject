@@ -199,6 +199,14 @@ module.exports = {
             console.log("/********************/", data);
             resolve(data)
         })
+    }
+    ,
+    viewreviews: (id) => {
+        return new Promise(async (resolve, reject) => {
+            let data = await db.get().collection(collection.REVIEW_COLLECTION).find({ hotelid:id }).toArray()
+            console.log("/********************/", data);
+            resolve(data)
+        })
     },
     getpenaltyAmount: (id) => {
         return new Promise(async (resolve, reject) => {
@@ -207,6 +215,16 @@ module.exports = {
             resolve(data)
         })
 
+    },
+    review: (data) => {
+        return new Promise(async (resolve, reject) => {
+            db.get().collection(collection.REVIEW_COLLECTION).insertOne(data).then((review) => {
+                console.log(review);
+                resolve(review.ops[0])
+
+            })
+
+        })
     }
     ,
     generateRazorpay: (bookingid, total) => {
