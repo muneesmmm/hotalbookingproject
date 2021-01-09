@@ -109,19 +109,19 @@ router.post('/add-room', (req, res) => {
     })
   })
 })
-router.get('/edit-room/:id', async (req, res) => {
-  let room = await hotelHelpers.getroomDatails(req.params.id)
-  console.log("**************************", room);
-  res.render('hotel/edit-room', { hotel: true, room })
+router.get('/edit-room/:id',async(req,res)=>{
+  let room=await hotelHelpers.getroomDatail(req.params.id)
+  console.log("**************************",room);
+  res.render('hotel/edit-room',{hotel:req.session.hotel,room})
 })
-router.post('/edit-room/:id', (req, res) => {
-  hotelHelpers.updateRoom(req.params.id, req.body).then((id) => {
+router.post('/edit-room/:id',(req,res)=>{
+  hotelHelpers.updateRoom(req.params.id,req.body).then((id)=>{
     res.redirect('/hotel/rooms')
-
-    if (req.files.image) {
-      let id = req.params.id
-      let image = req.files.image
-      image.mv('./public/room-images/' + id + '.jpg')
+    
+    if(req.files.image){
+      let id=req.params.id
+      let image=req.files.image
+      image.mv('./public/room-images/'+id+'.jpg')
     }
   })
 })
@@ -199,6 +199,16 @@ router.get('/view-penalty', (req, res) => {
 
     res.render('hotel/view-penalty', { hotel: req.session.hotel, data })
   })
+})
+router.get('/view-details/:id',async(req, res) => {
+  let user = req.session.user
+  id=req.params.id
+  console.log(id);
+  data=await hotelHelpers.viewdata(id)
+  hotelHelpers.viewdetails(id).then((review) => {
+    console.log("reviews", review);
+  res.render('hotel/view-details',{id,pic:user.photos[0].value,name:user.displayName,review,data})
+})
 })
 router.get('/pay-penalty/:id',async (req, res) => {
   hotelHelpers.getpenaltyAmount(req.params.id).then((data)=>{

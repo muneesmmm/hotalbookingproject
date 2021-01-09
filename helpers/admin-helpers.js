@@ -120,6 +120,14 @@ module.exports = {
             })
         })
     },
+    deletereview: (room) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.REVIEW_COLLECTION).removeOne({ _id: objectId(room) }).then((response) => {
+                console.log(response)
+                resolve(response)
+            })
+        })
+    },
     updateHotel: (hotelid, hotelData) => {
         console.log(hotelData);
         console.log(hotelid);

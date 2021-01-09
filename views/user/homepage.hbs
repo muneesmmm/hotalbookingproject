@@ -40,12 +40,7 @@
                         <ul class="nav navbar-nav">
                             <li class="nav-item"><a class="nav-link" href="/bookedhotels">Booked Hotels</a></li>
                             <li class="nav-item"><a class="nav-link" href="/view-penalty">Penalty</a></li>
-                            <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
-                                    aria-expanded="false" href="#">Dropdown </a>
-                                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a
-                                        class="dropdown-item" href="#">Second Item</a><a class="dropdown-item"
-                                        href="#">Third Item</a></div>
-                            </li>
+                            
                         </ul>
                         <form class="form-inline mr-auto" target="_self">
                             <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input
@@ -143,7 +138,7 @@
             </div>
         </div>
     </nav>
-    
+
     <nav class="navbar navbar-dark fixed-top bg-dark off-canvas" data-right-drawer="0" data-open-drawer="0">
         <div class="container-fluid flex-column"><button class="btn btn-dark drawer-knob" type="button"
                 data-open="drawer"><i class="fas fa-bars"></i></button>
@@ -151,17 +146,31 @@
                     class="btn btn-dark" type="button" data-dismiss="drawer"><span class="sr-only">Toggle
                         Navigation&nbsp;</span><i class="fas fa-times"></i></button></div>
             <ul class="nav navbar-nav flex-column drawer-menu">
-                <li class="nav-item"><a class="nav-link active" href="#">First Item</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Second Item</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Third Item</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Nav Item</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#"></a></li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
+                        aria-expanded="false" href="#">Hotels </a>
+                    <div class="dropdown-menu">
+                        {{#each hotels}}
+                        <a class="dropdown-item" href="#"><img src="/images/{{this.star}}.png"
+                                style="width: 90px;height: auto;"></a>
+                                {{/each}}</div>
+                </li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
+                        aria-expanded="false" href="#">Tope Destinations </a>
+                    <div class="dropdown-menu">
+                        {{#each destination}}
+                        <a class="dropdown-item" href="/hotels/{{this._id}}">{{this.city}}</a>
+                        {{/each}}
+                        </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#"></a></li>
                 <li class="nav-item"></li>
                 <li class="nav-item"></li>
             </ul>
             <ul class="nav navbar-nav flex-column bottom-nav">
-                <li class="nav-item"><a class="nav-link active" href="#">First Item</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Second Item</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Third Item</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#"></a></li>
             </ul>
         </div>
     </nav>
@@ -171,10 +180,9 @@
             <div class="blog-slider__item swiper-slide">
                 <div></div>
                 <div class="blog-slider__img"><img src="/hotel-images/{{this._id}}.jpg"></div>
-                <div class="blog-slider__content"><span class="blog-slider__code">26 December 2019</span>
+                <div class="blog-slider__content"><span class="blog-slider__code"></span>
                     <div class="blog-slider__title">{{this.hotelname}}</div>
-                    <div class="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae
-                        voluptate repellendus magni illo ea animi? </div><a class="class=&quot;blog-slider__button"
+                    <div class="blog-slider__text">This 4-storied hotel is a beautiful combination of traditional grandeur and modern facilities</div><a class="class=&quot;blog-slider__button"
                         href="#">READ MORE</a>
                 </div>
                 <div class="blog-slider__pagination"></div>
@@ -191,9 +199,7 @@
         <div class="container" data-aos="fade-up" style="margin-top:0px;">
             <div class="intro">
                 <h2 class="text-center" style="margin-top: 0px;">Popular Destinations</h2>
-                <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh
-                    erat,
-                    pellentesque ut laoreet vitae. </p>
+                <p class="text-center"> </p>
             </div>
             <div class="row justify-content-center align-items-center articles">
                 {{#each destination}}
@@ -222,7 +228,7 @@
                         <div class="card-body">
                             <h4 class="card-title">{{this.hotelname}}</h4>
                             <div class="product-rating">
-                                <img  src="/images/{{this.star}}.png" style="width: 90px;height: auto;">
+                                <img src="/images/{{this.star}}.png" style="width: 90px;height: auto;">
                             </div>
                             <h6 class="text-muted card-subtitle mb-2">{{this.place}}</h6>
                             <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio,
@@ -247,7 +253,7 @@
                         <div class="col-md-12">
                             <h1
                                 style="text-align: center;margin-top: 27px;margin-bottom: 36px;font-family: 'Almendra SC', serif;">
-                                LUXURIES</h1>
+                                </h1>
                         </div>
                     </div>
                     <div class="footer-basic">

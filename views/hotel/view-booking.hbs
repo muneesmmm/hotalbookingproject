@@ -19,8 +19,8 @@
         <th scope="col">Customer Name</th>
         <th scope="col">Room Name</th>
         <th scope="col">Type</th>
-        <th scope="col">price</th>
-        <th scope="col">Payment status</th>
+        <th scope="col">Checked in</th>
+        <th scope="col">Checked Out</th>
         <th></th>
       </tr>
     </thead>
@@ -31,16 +31,12 @@
         <td>{{this.name}}<br>({{this.email}})</td>
         <td><img style="width:70px;height:60px" src="/room-images/{{this.roomid}}.jpg">{{this.roomname}}</td>
         <td>{{this.type}}</td>
-        {{/each}}
-        {{#each rooms}}
-        <td>{{this.totalAmount}}</td>
-        <td>{{this.status}}</td>
-        <td><a href="/hotel/edit-checkin/{{this._id}}" class="btn btn-primary">Checked In</a>
-          <a href="/hotel/edit-checkout/{{this._id}}" class="btn btn-danger">Cheched Out</a>
-          <a href="/hotel/add-penalty/{{this._id}}" class="btn btn-danger">Penalty</a>
-        </td>
-      </tr>
-      {{/each}}
+        <td><a href="/hotel/edit-checkin/{{this._id}}" class="btn btn-primary">Checked In</a><br>{{this.chn}}</td>
+        <td> <a href="/hotel/edit-checkout/{{this._id}}" class="btn btn-danger">Cheched Out</a><br>{{this.cho}}</td> 
+        <td><a href="/hotel/view-details/{{this._id}}" class="btn btn-primary">view-details</a></td>
+      </tr>{{/each}}
+      
+      
 
     </tbody>
   </table>

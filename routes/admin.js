@@ -2,6 +2,7 @@ const { response } = require('express');
 var express = require('express');
 var router = express.Router();
 const adminHelpers = require('../helpers/admin-helpers')
+const userHelpers = require('../helpers/user-helper')
 const verifyLogin = (req, res, next) => {
   if (req.session.loggedIn) {
     next()
@@ -64,6 +65,18 @@ router.get('/logout', (req, res) => {
   req.session.user = null
   res.redirect('/admin')
 })
+router.get('/view-reviews/:id',(req, res) => {
+  let user = req.session.user
+  id=req.params.id
+  console.log(id);
+  userHelpers.viewreviews(id).then((review) => {
+    console.log("reviews", review);
+  res.render('admin/view-reviews',{id,pic:user.photos[0].value,name:user.displayName,review,admin: req.session.admin })
+})
+})
+router.get('/view-reviews',(req, res) => {
+  res.render('admin/view-reviews')
+})
 router.get('/add-hotel', (req, res) => {
   res.render('admin/add-hotel', { admin: req.session.admin })
 })
@@ -88,6 +101,14 @@ router.get('/detete-hotel/:id', (req, res) => {
   let hotel = req.params.id
   console.log(hotel)
   adminHelpers.deleteHotel(hotel).then((response) => {
+    res.redirect('/admin/totalhotals')
+  })
+
+})
+router.get('/detete-review/:id', (req, res) => {
+  let hotel = req.params.id
+  console.log(hotel)
+  adminHelpers.deletereview(hotel).then((response) => {
     res.redirect('/admin/totalhotals')
   })
 

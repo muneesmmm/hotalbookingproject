@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row mt-4">
-      <a href="/admin/add-Hotel" class="btn btn-success ml-auto my-5">Add Hotels</a>
+      <a href="/admin/add-hotel" class="btn btn-success ml-auto my-5">Add Hotels</a>
     </div>
   <table class="table">
     <thead class="thead-dark">
@@ -11,6 +11,7 @@
         <th scope="col">Hotal email</th>
         <th scope="col">Hotal phone</th>
         <th scope="col">City</th>
+        <th></th>
         <th></th>
 
       </tr>
@@ -24,6 +25,7 @@
         <td>{{this.email}}</td>
         <td>{{this.phone}}</td>
         <td>{{this.city}}</td>
+        <td><a href="/admin/view-reviews/{{this._id}}" class="btn btn-primary">Reviews</td>
         <td><a href="/admin/edit-hotel/{{this._id}}" class="btn btn-primary">Edit</a>
            <a href="/admin/detete-hotel/{{this._id}}" class="btn btn-danger" onclick="return confirm('are you want to delete {{this.name}} ?')">Delete</a></td>
           

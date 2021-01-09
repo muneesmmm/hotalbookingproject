@@ -59,6 +59,7 @@ module.exports = {
                         email: hotelData.email,
                         phone: hotelData.phone,
                         location: hotelData.location,
+                        star: hotelData.star,
                         address: hotelData.address
 
                     }
@@ -130,7 +131,7 @@ module.exports = {
         })
 
     } ,
-    getroomDatails: (roomid) => {
+    getroomDatail: (roomid) => {
         return new Promise(async (resolve, reject) => {
             let rooms = await db.get().collection(collection.ROOM_COLLECTION).aggregate([
                 {
@@ -254,6 +255,21 @@ module.exports = {
         return new Promise(async (resolve, reject) => {  
             let data = await db.get().collection(collection.CONFBOOKING_COLLECTION).find({hotelid:id}).toArray()
             console.log("................",data);
+            resolve(data)
+        })
+    }
+    ,
+    viewdetails: (id) => {
+        return new Promise(async (resolve, reject) => {
+            let data = await db.get().collection(collection.CONFBOOKING_COLLECTION).findOne({ orderid:objectId(id) })
+            console.log("/********************/", data);
+            resolve(data)
+        })
+    },
+    viewdata: (id) => {
+        return new Promise(async (resolve, reject) => {
+            let data = await db.get().collection(collection.ROOMBOOKING_COLLECTION).findOne({_id:objectId(id) })
+            console.log("/********************/", data);
             resolve(data)
         })
     },

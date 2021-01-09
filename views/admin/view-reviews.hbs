@@ -1,0 +1,13 @@
+<div class="container mt-5">
+       <fieldset>
+        <table class="table" align="left" width="900px">
+    <tbody>
+       {{#each review}} 
+      <tr>
+        <td colspan="2" style="padding-top: 20px;width: 250px;"><img src="{{pic}}" width="40" height="40" class="rounded-circle">{{username}}<img  src="/images/{{rate}}.png" style="width: 90px;height: auto;" align="right"></td>
+        <td><a href="/admin/detete-review/{{this._id}}" class="btn btn-danger" >Delete</a></td></tr>
+        <tr><td style="padding-right:20px;" width="20px"></td><td><fieldset>{{desc}}</fieldset> </td>
+      </tr>
+     {{/each}}
+    </tbody>
+  </table></fieldset><hr></div>
