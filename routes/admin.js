@@ -95,6 +95,7 @@ router.post('/add-hotel', (req, res) => {
   adminHelpers.sendMail(req.body).then((response) => {
     req.session.admin = response
     req.session.loggedIn = true
+  
   })
 })
 router.get('/detete-hotel/:id', (req, res) => {
