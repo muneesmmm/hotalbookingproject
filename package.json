@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "alert": "^5.0.8",
-    "bcrypt": "^5.0.0",
+    "bcrypt": "^5.1.0",
     "cookie-parser": "~1.4.4",
     "cookie-session": "^1.4.0",
     "db": "^3.3.0",

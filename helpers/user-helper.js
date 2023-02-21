@@ -29,7 +29,7 @@ module.exports = {
             //     })
 
             // }else{
-            db.get().collection(collection.USER_COLLECTION).insertOne(userData).then((data) => {
+            db.get().collectiony(collection.USER_COLLECTION).insertOne(userData).then((data) => {
                 resolve(data.ops[0])
             })
 

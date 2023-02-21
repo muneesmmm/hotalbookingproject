@@ -13,7 +13,7 @@ var hotelRouter = require('./routes/hotel');
 // require('/passport-setup')
 var hbs = require('express-handlebars')
 var app = express();
-var fileUpload = require('express-fileUpload')
+var fileUpload = require('express-fileupload')
 var db = require('./config/connection')
 var session=require('express-session')
 // view engine setup
